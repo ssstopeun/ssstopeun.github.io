@@ -2,7 +2,7 @@
 title: Getting Started
 author: cotes
 date: 2019-08-09 20:55:00 +0800
-categories: [jekyll, Tutorial]
+categories: [jekyll, update]
 tags: [getting started]
 pin: true
 ---
