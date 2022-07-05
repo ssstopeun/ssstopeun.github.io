@@ -5,7 +5,10 @@
 #   twitter: {twitter_of_author}
 #   url: {homepage_of_author}
 # -------------------------------------
-
+<author_id>:
+  name: <Jeong Jieun>
+  url: http://github.com/ssstopeun
+  
 cotes:
   name: Cotes Chung
   twitter: cotes2020
