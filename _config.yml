@@ -86,11 +86,9 @@ avatar: '/assets/img/profile.jpg' # 대표이미지 설정
 # boolean type, the global switch for ToC in posts.
 toc: true
 
-comments:
-  provider: disqus
-  
-  disqus:
-    shortname: ssstopeun-github-io
+disqus:
+  comments: true
+  shortname: 'ssstopeun-github-io'
 
 # Self-hosted static assets, optional › https://github.com/cotes2020/chirpy-static-assets
 assets:
