@@ -89,7 +89,7 @@ toc: true
 comments:
   providier: "disqus"
   disqus:
-  shortname: "ssstopeun-github-io"
+    shortname: "ssstopeun-github-io"
 
 # Self-hosted static assets, optional › https://github.com/cotes2020/chirpy-static-assets
 assets:
