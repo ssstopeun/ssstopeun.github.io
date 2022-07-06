@@ -10,7 +10,7 @@ author: author_id
 ---
 >git을 본격적으로 사용하다보니 처음 git을 시작했을때 생각없이 올린 repository를 정리해 카테고리별로 합쳐야 겠다는 생각이 들었다. repository들을 모두 clone하여 하나의 폴더에 합치고 다시 push하기엔 일이 너무 많을 것 같아 git bash로 병합하는 법을 알아보자!
 
-![Desktop View](./assets/img/2022.07/06-1.jpg){:width="70%"}
+<img src="assets/img/2022.07/06-1.jpg">
 ---
 OOP_2020 repository에 OOP_Training_03 repository를 폴더로 넣어줄 것 이다.
 
