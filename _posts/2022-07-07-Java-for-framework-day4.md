@@ -1,5 +1,5 @@
 ---
-title: [Day4] Collection
+title: /[Day4] Collection
 date: 2022-07-07 04:26:00 +0900
 categories: [Backend, Java for framework]
 tags: [Java, Backend, SW] 
