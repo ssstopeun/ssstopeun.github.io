@@ -12,7 +12,8 @@ author: author_id
 ---
 - Collection은 **여러 데이터의 묶음**이다. (묶음 단위로 움직인다.)
 - **추상체** 이다.
-![Desktop View](/assets/img/2022.07/07-1.png){: width="70%" }
+![Desktop View](./assets/img/2022.07/07-1.png){: width="70%" }
+
 <br>
 <br>
 
@@ -53,4 +54,12 @@ public class Main {
 다음과 같이 Stream을 사용할 수 있다. 이 밖에도 count, reduce 등 다양한 고차함수로 기능들을 제공한다.  
 (주석은 method reference로 바꾼 코드로 같은 의미이다.)
 
+---
+---
+- 스트림을 만들때는 Stream.generate / Stream.iterate 로 만들 수 있다.
+- 스트림의 장점 : 연속된 데이터를 위에서 말한 고차함수들을 사용해 기능들을 간결하게 표현할 수 있다.
+
+**익숙해지면 굉장피 편리하니 자주 사용하여 익숙해지자!**
+
 ## Optional
+- NPE : Null Pointer Exception -> 가장 많이 발생하는 에러중 하나
