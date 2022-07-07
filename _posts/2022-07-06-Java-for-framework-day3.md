@@ -1,5 +1,5 @@
 ---
-title: /[Day3] Interface
+title: Day3.Interface
 date: 2022-07-06 05:29:00 +0900
 categories: [Backend, Java for framework]
 tags: [Java, Backend, SW] 
