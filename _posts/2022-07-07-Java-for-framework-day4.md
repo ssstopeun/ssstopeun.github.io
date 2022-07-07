@@ -1,5 +1,5 @@
 ---
-title: Collection
+title: [Day4] Collection
 date: 2022-07-07 04:26:00 +0900
 categories: [Backend, Java for framework]
 tags: [Java, Backend, SW] 
@@ -12,7 +12,7 @@ author: author_id
 ---
 - Collection은 **여러 데이터의 묶음**이다. (묶음 단위로 움직인다.)
 - **추상체** 이다.
-![Desktop View](./assets/img/2022.07/07-1.png){: width="70%" }
+![Desktop View](/assets/img/2022.07/07-1.PNG){: width="70%" }
 
 <br>
 <br>
