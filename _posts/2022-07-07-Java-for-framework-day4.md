@@ -54,12 +54,92 @@ public class Main {
 다음과 같이 Stream을 사용할 수 있다. 이 밖에도 count, reduce 등 다양한 고차함수로 기능들을 제공한다.  
 (주석은 method reference로 바꾼 코드로 같은 의미이다.)
 
----
----
-- 스트림을 만들때는 Stream.generate / Stream.iterate 로 만들 수 있다.
+<br>
+
+- 스트림을 만들때는 Stream.generate / Stream.iterate 로 만들 수 있다.  
+
+이를 사용해 random한 숫자를 10개 생성하는 코드예시이다.
+```java
+//Stream.generate 사용예시
+Random r = new Random();
+Stream.generate(r::nextInt)         //Stream.generate(() -> r.nextInt())
+    .limit(10)
+    .forEach(System.out::println)
+
+//Stream.iterate 사용예시
+Stream.iterate(seed:0, (i) -> i + 1)
+    .limit(10)
+    .forEach(System.out::println)
+```
+
+다른 예시도 알아보자.
+주사위를 100번 던져 6이 나오는 확률를 구해보자.
+```java
+Random r = new Random();
+var count : long = Stream.generate(() -> r.nextInt(bound: 6) + 1) 
+    .limit(100)
+    .filter(n -> n === 6)
+    .count();
+
+System.out.println(count);
+```
+
+
 - 스트림의 장점 : 연속된 데이터를 위에서 말한 고차함수들을 사용해 기능들을 간결하게 표현할 수 있다.
 
 **익숙해지면 굉장피 편리하니 자주 사용하여 익숙해지자!**
 
 ## Optional
-- NPE : Null Pointer Exception -> 가장 많이 발생하는 에러중 하나
+- NPE : Null Pointer Exception  
+-> 가장 많이 발생하는 에러중 하나  
+-> 자바에서 거의 모든 것이 레퍼런스기 때문에 **거의 모든것이 null이 될 수 있다.**  
+-> 항상 null을 확인해야 한다!
+
+- <span style="color: #dc4343">그래서 null을 쓰지말자고 서로 약속한다. (계약한다.)</span>
+
+어떻게하면 null을 쓰지않을 수 있을까?  
+그 방법을 알아보자.
+
+---
+- EMPTY 객체 사용
+```java
+//EMPTY 정의
+public static final User EMPTY = new User(age:0, name:"");
+
+//초기값 설정
+User user = User.EMPTY;
+
+//사용예시
+if(user == User.EMPTY){ 
+
+}
+```
+이렇게 null을 사용하지 않고 pusblic static final로 EMPTY 초기값을 설정해준다.
+<br>
+
+- Opitonal 사용  
+    - <span sytle = "color: #0000CD">Optinal이란?</span> 
+    **null를 포함한 객체를 이동시켜주는 바구니**
+    - 객체를 담아 이동시켜주는데 객체가 null일때 null을 보여주는 것이 아니라 아무것도 없는 바구니를 보여주는 것이다. 객체가 null이 아니면 바구니 속 data를 보여준다.
+    - 또한 간단한 기능들도 제공한다.
+```java
+Optional<User> optionalUser = Optinal.empty();
+OptionalUser = Optional.of(new User(age:1, name:"2"));
+
+optionalUser.isEmpty();   //null이면 true
+optionalUser.isPresent(); //값이 있으면 true
+
+if (optionalUser.isPresent()) {
+    //do1 
+} else{
+    //do2
+}
+// 위와 같은 if문을 Optional에서 제공하는 기능으로 사용할 수 있다.
+
+optionalUser.ifPresentOrElse(user -> {  //user라는 객체가 존재
+    //do 1
+}, () ->{   //() : null값
+    //do 2
+})
+
+```
