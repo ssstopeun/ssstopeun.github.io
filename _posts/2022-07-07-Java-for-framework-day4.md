@@ -107,7 +107,8 @@ System.out.println(count);
 
 ---
 
-- EMPTY 객체 사용
+- EMPTY 객체 사용  
+
 ```java
 //EMPTY 정의
 public static final User EMPTY = new User(age:0, name:"");
@@ -120,15 +121,15 @@ if(user == User.EMPTY){
 
 }
 ```
-
 이렇게 null을 사용하지 않고 pusblic static final로 EMPTY 초기값을 설정해준다.
+
 <br>
 
 - Opitonal 사용  
     - <span sytle = "color: #0000FF">Optinal이란?</span> 
     **null를 포함한 객체를 이동시켜주는 바구니** 로 하나의 type이다.
     - 객체를 담아 이동시켜주는데 객체가 null일때 null을 보여주는 것이 아니라 아무것도 없는 바구니를 보여주는 것이다. 객체가 null이 아니면 바구니 속 data를 보여준다.
-    - 또한 간단한 기능들도 제공한다.
+    - 또한 간단한 기능들도 제공한다.  
 
 ```java
 Optional<User> optionalUser = Optinal.empty();
