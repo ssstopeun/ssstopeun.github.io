@@ -146,3 +146,10 @@ optionalUser.ifPresentOrElse(user -> {  //user라는 객체가 존재
 })
 
 ```
+
+## 정리
+- Collection : 여러 데이터의 묶음  
+- iterator : 데이터를 개별로 처리
+- stream : 데이터의 연속으로 데이터들을 다양한 고차함수들로 간결하게 표현 가능
+- Optional : 자바에서 많이 발생하는 에러인 NPE를 방지하기위해 개발자들간의 ***"null을 사용하지 말자"*** 는 암묵적인 rule이 생겼고 이를 위해 사용하는 type  
+-> 프로그램을 더 안전하게 만들 수 있게 되었다.
