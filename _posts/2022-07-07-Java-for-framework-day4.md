@@ -18,8 +18,10 @@ author: author_id
 <br>
 
 ## Iterator
+---
+
 - 여러 데이터의 묶음(Collection)을 풀어서 하나씩 처리할 수 있는 수단을 제공한다.
-- next()를 통해서 다음 데이터를 조회할 수 있다. <span style="color: #dc4343">(이전 데이터는 조회불가)<span>
+- next()를 통해서 다음 데이터를 조회할 수 있다. <span style="color: #dc4343">(이전 데이터는 조회불가)</span>
 
 
 ```java
@@ -33,6 +35,8 @@ while(iter.hasNext()) {
 이처럼 list를 interator()로 설정하면 iter.hasNext()로 다음 데이터가 있는지 확인하고 iter.next()로 값들을 불러올 수 있다.
 
 ## Stream
+---
+
 - **데이터의 연속** 이다.
 - Java 8 이상에서 부터 사용가능하다.
 - 이미 우리가 쓰고 있는 Stream에는 System.in / System.out 가 있다.
@@ -87,9 +91,11 @@ System.out.println(count);
 
 - 스트림의 장점 : 연속된 데이터를 위에서 말한 고차함수들을 사용해 기능들을 간결하게 표현할 수 있다.
 
-**익숙해지면 굉장피 편리하니 자주 사용하여 익숙해지자!**
+**<span sytle = "background-color: #fff5b1"> 익숙해지면 굉장히 편리하니 자주 사용하여 익숙해지자! </span>**
 
 ## Optional
+---
+
 - NPE : Null Pointer Exception  
 -> 가장 많이 발생하는 에러중 하나  
 -> 자바에서 거의 모든 것이 레퍼런스기 때문에 **거의 모든것이 null이 될 수 있다.**  
@@ -97,8 +103,7 @@ System.out.println(count);
 
 - <span style="color: #dc4343">그래서 null을 쓰지말자고 서로 약속한다. (계약한다.)</span>
 
-어떻게하면 null을 쓰지않을 수 있을까?  
-그 방법을 알아보자.
+어떻게하면 null을 쓰지않을 수 있을까? 그 방법을 알아보자.
 
 ---
 
@@ -120,7 +125,7 @@ if(user == User.EMPTY){
 <br>
 
 - Opitonal 사용  
-    - <span sytle = "color: #0000CD">Optinal이란?</span> 
+    - <span sytle = "color: #0000FF">Optinal이란?</span> 
     **null를 포함한 객체를 이동시켜주는 바구니** 로 하나의 type이다.
     - 객체를 담아 이동시켜주는데 객체가 null일때 null을 보여주는 것이 아니라 아무것도 없는 바구니를 보여주는 것이다. 객체가 null이 아니면 바구니 속 data를 보여준다.
     - 또한 간단한 기능들도 제공한다.
@@ -148,6 +153,8 @@ optionalUser.ifPresentOrElse(user -> {  //user라는 객체가 존재
 ```
 
 ## 정리
+---
+
 - Collection : 여러 데이터의 묶음  
 - iterator : 데이터를 개별로 처리
 - stream : 데이터의 연속으로 데이터들을 다양한 고차함수들로 간결하게 표현 가능
