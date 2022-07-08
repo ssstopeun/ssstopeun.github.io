@@ -92,7 +92,7 @@ System.out.println(count);
 
 - 스트림의 장점 : 연속된 데이터를 위에서 말한 고차함수들을 사용해 기능들을 간결하게 표현할 수 있다.  
 
-<span style = "background-color: #fff5b1">익숙해지면 굉장히 편리하니 자주 사용하여 익숙해지자!</span>
+**<span style = "background-color: #fff5b1">익숙해지면 굉장히 편리하니 자주 사용하여 익숙해지자!</span>**
 
 ## Optional
 ---
@@ -127,7 +127,7 @@ if(user == User.EMPTY){
 <br>
 
 - Opitonal 사용  
-    - <span style = "color: #0000FF">Optinal이란?</span> 
+    - <span style = "color: #0000CD">Optinal이란?</span> 
     **null를 포함한 객체를 이동시켜주는 바구니** 로 하나의 type이다.
     - 객체를 담아 이동시켜주는데 객체가 null일때 null을 보여주는 것이 아니라 아무것도 없는 바구니를 보여주는 것이다. 객체가 null이 아니면 바구니 속 data를 보여준다.
     - 또한 간단한 기능들도 제공한다.  

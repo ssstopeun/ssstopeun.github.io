@@ -7,10 +7,12 @@ author: author_id
 ---
 
 # [DAY3] Interface
+---
 > 오늘은 Interface에 관해 배워보고자 한다.
 <br>
 
 ## 0. Interface란?
+---
 > **객체를 어떻게 구성해야하는지 알려주는 설계도**
 
 <br>
@@ -26,6 +28,7 @@ interface interfaceName{
 주석과 같은 의미로 사용할 수 있는데 인터페이스에서 메소드는 무조건 추상메소드, int는 무조건 상수이기 때문에 public static final 과 public abstract void가 생략가능하다.
 
 ## 1. Interface의 기능
+---
 > **Interface는 개발코드를 직접수정하지 않고 사용하고 있는 객체를 변경할 수 있게 한다.**
 
 ### (1) 구현을 강제한다.
