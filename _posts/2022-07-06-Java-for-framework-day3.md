@@ -6,7 +6,7 @@ tags: [Java, Backend, SW]
 author: author_id 
 ---
 
-# [DAY3] Interface 이야기
+# [DAY3] Interface
 > 오늘은 Interface에 관해 배워보고자 한다.
 <br>
 
