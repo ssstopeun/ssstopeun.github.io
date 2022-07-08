@@ -48,7 +48,12 @@ ex. Ant, Maven, **Gradle**
 
  - 유용한 단축키
     - jetbrain에서 제공하는 단축키 정리 pdf   
-    https://resources.jetbrains.com/storage/products/intellij-idea/docs/IntelliJIDEA_ReferenceCard.pdf  
+    https://resources.jetbrains.com/storage/products/intellij-idea/docs/IntelliJIDEA_ReferenceCard.pdf 
+
+    <!-- - 대표적 단축키  
+    |단축키|설명|
+    |:--|:--|
+    |**Alt+Enter**|  -->
     
     - **Alt+Enter** : 빠른 수정
     - **Ctrl+1**    : 폴더창으로 커서 이동 (<->Esc)
