@@ -7,9 +7,6 @@ author: author_id
 ---
 
 # [DAY3] Interface
----
-> 오늘은 Interface에 관해 배워보고자 한다.
-<br>
 
 ## 0. Interface란?
 ---
@@ -120,5 +117,143 @@ public class Customer{
 
 
 ## 2. default Method 기능
+
+---
+
+> Interface에서 추상메소드가 아닌 메소드 구현을 할 수 있는 것이다.  
+> (java 8 부터 생성된 기능이다.)
+
+```java
+interface MyInterface {
+    void method1(); // 추상메소드
+    
+    default void sayHello {
+        System.out.println("Hello World");
+    }
+}
+
+public class Main implements MyInterface {
+    public static void main(String[] args){
+        new Main().sayHello();
+    }
+
+    @Override
+    public void method1(){
+        throw new RuntimeException();
+    }
+}
+```
+method1 처럼 추상메소드로 생성되어 Main에서 Override해주어야 하는 것이 아니라 defauld Method로 생성을 하면 기본적인 구현을 할 수 있고 Override하지 않아도 main에서 호출할 수 있다.
+
+<br>
+
+그럼 어떨 때 default Method를 사용해야할까?
+
+---
+
+```java
+interface MyInterface {
+    void method1();
+    void method2();
+}
+
+public class Main {
+    public static void main(String[] args) {
+        new Service().method1();
+    }
+}
+
+class Service implements MyInterface {
+
+    @ovveride
+    public void method1() {
+        System.out.println("Hello World");
+    }
+
+    @ovveride
+    public void method2() {
+        //(nothing)
+    }
+
+}
+```
+이 코드를 보게 되면 MyInterface에는 세가지의 추상메소드가 정의되어 있지만 정작 main에서는 method1만 사용하는걸 볼 수 있다.  
+하지만 interface의 메소드를 모두 Override해야 하므로 method1을 사용하기 위해 불필요한 method2또한 Override를 해줘야 한다.  
+<span style = "color:blue">(위 코드의 경우는 interface의 추상메소드가 두개 뿐이지만 메소드가 많을수록 불필요하게 Override해야할 메소드가 많아지게 되는 것이다.)</span>
+<br>
+<br>
+
+이를 해결하기 위한 것이 **Adaptor**이다.
+
+### Adaptor
+```java
+public class MyInterfaceAdaptor implements MyInterface{
+    @Override
+    public void method1() {
+    
+    }
+
+    @Override
+    public void method2() {
+
+    }
+}
+
+class Service extends MyInterfaceAdapter {
+    @ovveride
+    public void method1() {
+        System.out.println("Hello World");
+    }
+}
+```
+MyInterface를 Adaptor를 통해 inplements 하여 모든 메소드를 비어있는 상태로 구현한다.  
+그 후 Service에서는 implements가 아닌 **extends**, 상속을 하여 method1만 Override하여 사용하는 것이다.  
+그러면 이전처럼 불필요한 method2를 구현하지 않아도 된다.  
+<br>
+하지만 이 또한 문제가 생길 수 있다.  
+만약 Service가 다른 object를 상속받았다고 하자. Java에서 extends는 하나만 가능한데 그럼 다시 method1을 쓰기위해 MyInterfaceAdator를 implements받아야 한다. 그렇게 되면 또 똑같이 불필요한 method2도 Override해야 하는 문제가 발생하는 것이다. 
+<br>
+
+이를 위한 것이 바로 **default Method**이다.
+
+### default Method
+```java
+interface MyInterface {
+    default void method1(){};
+    default void method2(){};
+}
+class Service extends Object implements MyInterface {
+    @ovveride
+    public void method1() {
+        System.out.println("Hello World");
+    }
+}
+```
+interface의 메소드를 default Method로 작성해 주면 이를 implements 받은 class에서 원하는 메소드만 Override해 사용할 수 있다.
+
+- default Method 기능을 정리하자면
+  1. Adaptor의 역할을 할 수 있다.  
+  2. Override할 때 구현되는 기능이 항상 같다면, default Method로 한번만 구현하면 **Override없이 그저 implements하는 것만으로도 그 기능을 사용할 수있다.**  
+
+## 2-1. Static Method
+---
+default Method처럼 Static Method도 있다.
+```java
+public interface Ability {
+    static void sayHello() {
+        System.out.println("Hello World");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Ability.sayHello();
+    }
+}
+```
+특정 기능을 수행할 수 있는 Static Method를 interface에 담고 이를 호출하는 것으로 사용할 수 있다.  
+<span style = "color: blue"> 함수의 역할과 같으므로 함수제공자라고 생각하면 된다.</span>
+
+
 ## 3. Functional Interface
 ## 4. Lambda 표현식
