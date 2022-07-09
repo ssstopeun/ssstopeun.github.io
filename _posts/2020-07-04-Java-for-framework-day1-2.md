@@ -209,7 +209,7 @@ System.out.println(sb);
   - gitignore : 포함되지 않아도 되는 파일들을 관리할때 사용
   - build결과 (*.class, *.jar, build/), generate가능한 파일, local설정, 키/보안관련
 - .gitignore에 어떤 파일을 넣어햐 하나요?
-  - https://gitignore.io 를 통해 본인의 작업파일에서의 필요한 .gitignore파일 내용 생성이 가능하다.
+  - <https://gitignore.io> 를 통해 본인의 작업파일에서의 필요한 .gitignore파일 내용 생성이 가능하다.
 
 ## 정리
 - 자바 개발자라면 기본적으로 지켜야할 것이 있다.

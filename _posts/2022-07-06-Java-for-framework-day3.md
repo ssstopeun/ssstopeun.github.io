@@ -41,37 +41,80 @@ interface interfaceName{
 <br>
 
 ### (3) 결합도를 낮추는 효과 (의존성을 역전)
-<!--
-이 말이 가장 어려웠다. Dependency Injection, Dependency Inversion등의 용어가 나오는데 머리가 아팠다.
+이 부분이 가장 어려웠던 것 같다. Dependency Injection, Dependency Inversion등의 용어가 이해가 되지않았다.  
+
 <br>
-우선 **Dependency Injection** 부터 알아보자.
-<br>
+우선 Dependency (의존관계) 부터 천천히 알아보자.
+
 ---
 
-#### Dependency Injection (DI) : 의존관계 주입
+#### Dependency : 의존관계
+> 의존 대상 B가 변경되었을 때 그 영향이 A에 미치는 관계
 
-수업때 했던 예로 로그인이 있다. 우리는 kakao로 로그인할때와 naver로 로그인할때에 따라 아이디와 비밀번호가 달라진다. 뭘로 로그인하느냐에 따라 로그인방법이 달라지는 것이다.   
-이는 ***"user가 로그인종류에 의존한다"*** 라고 말할 수 있다.  
-코드로 표현하면 다음과 같다.
+<br>
+예를 든 것중에 "음식레시피" 예시가 가장 이해가 잘되었다.
+
+> 쿠키요리사는 쿠키레시피에 의존한다. 만약 쿠키레시피가 변경되다면 요리사는 쿠키를 새로운 방법으로 만들게 된다. **"요리사는 레시피에 의존한다"** 라고 말할 수 있는 것이다.
+
+
 ```java
-class User{
-    private login Login;
+public class CokkieChef {
+    private HamburgerRecipe cokkieRecipe;
 
-    public User(){
-        login = new Login;
+    public CokkieRecipe() {
+        this.cookieRecipe = new CokkieRecipe();
+        //this.cookieRecipe = new ChockoCokkieRecipe();
     }
 }
 ```
----
+이렇게 코드를 작성한다면 두 클래스 간 결합성이 높다는 문제가 발생한다.  
+CookieChef클래스와 CokkieRecipe 클래스가 강하게 결합되어 초코쿠키 레시피를 사용하고 싶다면 주석처럼 CookieChef의 생성자를 직접 바꿔주어야 한다.  <span style="color: blue">즉, 유연성이 떨어지는 것이다.</span>
 
-위의 코드는 단순히 login에만 의존하게 된다. 하지만 naver, kakao등 다양한 로그인을 의존받을 수 있게 하기위해 ***"인터페이스 추상화"***가 필요한 것이다.  
-이 과정을 거치게 되면 인터페이스를 통해 더 다양한 의존 관계를 맺을 수 있고, 실제 구현 클래스와는 관계가 느슨해져 결합도가 낮아지게 된다.
+<br>
 
----
+이를 **Dependency Injection**가 해결할 수 있다.
+#### Dependency Injection (DI) : 의존관계 주입
+> 의존관계를 외부해서 결정(주입) 해주는 것을 말한다.   
 
-그래서 결론적으로 **DI**란 
+우선 다양한 쿠키 레시피를 **Interface**를 사용해 추상화 하자.
+```java
+public interface CookieRecipe{
 
--->
+}
+public class ChockoCookieRecipe implements CookieRecipe{
+
+}
+```
+<br>
+그 후 CokkieChef 클래스의 생성자에서 외부로부터 쿠키레시피를 주입 (Injection) 받도록 하는 것이다.
+
+```java
+public class CookieChef{
+    private CookieRecipe cookieRecipe;
+    
+    public CookieRecipe(CookieRecipe cookieRecipe){
+        this.cookieRecipe = cookieRecipe;
+    }
+}
+
+public class Customer{
+    private CookieChef cookieChef = new CookieChef(new CokkieRecipe());
+
+    public void orderMenu(){
+        cookieChef = new CokkieChef(new ChockoCokkieRecipe());
+    }
+}
+```
+이렇게 되면 customer가 레시피를 결정해 Chef에게 주입할 수 있다. 이것이 **Dependency Insection** 이다.  
+
+<br>
+이때 Dependency Inversion이 일어나게 되는데
+
+#### Dependency Inversion : 의존관계 역전
+
+![Desktop View](/assets/img/2022.07/09-1.jpg){: width="70%" }
+
+왼쪽 그럼처럼 A가 B(구상체)와 직접적으로 의존관계를 맺는 것이 아니라 오른쪽 그림처럼 interface라는 추상체를 중간에 둬서 추상체를 통하여 의존하게 하는 것이다. 이 때 발생하는것이 **Dependency Inversion** 이다. 이는 의존성을 역전해서 사용하라는 객체지향 5원칙중 **DIP (Dependency Inversion Principle)** 에 해당한다.
 
 
 
