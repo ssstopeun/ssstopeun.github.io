@@ -6,12 +6,12 @@ tags: [Java, Backend, SW, Gradle]
 author: author_id 
 ---
 
-# JAVA
+# [Day1] JAVA
 
 ## JAVA 개발환경
 ---
 
-> JDK (Java Development Kit)  
+>JDK (Java Development Kit)  
 JVM (Java Virtual Machine) 필요 => 실행환경 : JRE (Java Runtime Environment)  
 JRE + 개발 tool => 개발환경 : JDK  
 
@@ -30,6 +30,7 @@ JRE + 개발 tool => 개발환경 : JDK
 
 > 자동으로 Build, 실행해주는 tool  
 ex. Ant, Maven, **Gradle**
+
 - Gradle : https://gradle.org
 - Gradle 사용  
     1. cmd창에서 build할 폴더로 이동
@@ -50,21 +51,25 @@ ex. Ant, Maven, **Gradle**
     - jetbrain에서 제공하는 단축키 정리 pdf   
     https://resources.jetbrains.com/storage/products/intellij-idea/docs/IntelliJIDEA_ReferenceCard.pdf 
 
-    <!-- - 대표적 단축키  
-    |단축키|설명|
-    |:--|:--|
-    |**Alt+Enter**|  -->
+    - 대표적 단축키 
+
+    |단축키|설명|  
+    |:--------------------|:--------------------|  
+    |**Alt+Enter**| 빠른 수정 |  
+    |**Ctrl+1**| 폴더창으로 커서 이동 (<-> Esc) |
+    |**Ctrl+N**| 새파일 생성 |
+    |**Shift+Shift**| 폴더창에서 파일탐색 |
+    |**Alt+Up/Down***| 단계별 블록지정 |
+    |**Ctrl+/**| 주석지정 | 
+    |**ctrl+Alt+L**| 코드 reformating |
+    |**Shift+Ctrl+Alt+T**| refactoring <span style="color: #0000CD">(Intellij의 특징적인 기능)</span> |
+    |**<span style ="color: #dc4343">Shift+Ctrl+A : 명령어 검색 </span>**| 명령어검색기능 (다른 기능기억못해도 이것만 기억하면 검색하여 사용가능!) |
     
-    - **Alt+Enter** : 빠른 수정
-    - **Ctrl+1**    : 폴더창으로 커서 이동 (<->Esc)
-    - **Ctrl+N**    : 새파일 생성
-    - **Shift+Shift** : 폴더창에서 파일탐색
-    - **Alt+Up/Down** : 단계별 블록지정
-    - **Ctrl+/**      : 주석지정
-    - **ctrl+Alt+L**  : 코드 reformating
-    - **Shift+Ctrl+Alt+T** : refactoring <span style="color: #0000CD">(Intellij의 특징적인 기능)</span>  
-    특정 문장이나 함수를 메소드, 변수로 뺄 수 있고 같은 변수들을 한번에 수정할 수 있다.
-    - **<span style ="color: #dc4343">Shift+Ctrl+A : 명령어 검색 </span>** (명령어들을 기억못해도 이 단축기로 검색하여 사용가능)
+<br>
 
 
-## 초보개발자가 알면 좋은 정보
+## 정리
+- JAVA 개발환경을 위해 jdk를 다운받아 나의 개발환경을 꾸미자.
+- 자동으로 빌드와 실행을 해주는 Build tool 중 하나인 Gradle을 사용해보자.
+- 자바개발자들이 주로 사용하는 IDE인 intellij와 이 환경에서 사용하는 단축키를 알아보자.
+- 단축키는 Shift+Ctrl+A로 검색이 가능하고 Intellij Cheat Sheet에 모든 단축키가 나와있다.
