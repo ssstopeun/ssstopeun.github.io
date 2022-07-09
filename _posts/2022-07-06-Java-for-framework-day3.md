@@ -112,7 +112,7 @@ public class Customer{
 
 #### Dependency Inversion : 의존관계 역전
 
-![Desktop View](/assets/img/2022.07/09-1.jpg){: width="70%" }
+![Desktop View](/assets/img/2022.07/09-1.JPG){: width="70%" }
 
 왼쪽 그럼처럼 A가 B(구상체)와 직접적으로 의존관계를 맺는 것이 아니라 오른쪽 그림처럼 interface라는 추상체를 중간에 둬서 추상체를 통하여 의존하게 하는 것이다. 이 때 발생하는것이 **Dependency Inversion** 이다. 이는 의존성을 역전해서 사용하라는 객체지향 5원칙중 **DIP (Dependency Inversion Principle)** 에 해당한다.
 
