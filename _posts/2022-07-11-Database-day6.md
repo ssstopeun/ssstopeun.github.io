@@ -1,12 +1,12 @@
 ---
-title: Day6.Database
+title: Day6-1.Database
 date: 2022-07-11 04:40:00 +0900
 categories: [Backend, Database]
 tags: [Database, Backend, SW] 
 author: author_id 
 ---
 
-# [DAY6] Database
+# [DAY6-1] Database
 
 ## 1. 데이터베이스는 왜 필요한가?
 ---
@@ -166,43 +166,3 @@ author: author_id
   - 필드(컬럼)는 이름과 타입과 속성(primary key)로 구성된다.
 ![Desktop View](/assets/img/2022.07/11-2.JPG)
 
-## 4. SQL 소개
----
-> SQL : Structured Query Language
->  - 관계형 데이터베이스에 있는 데이터(테이블)를 질의하거나 조작해주는 언어
-
-- 1970년대 초반에 IBM이 개발한 구조화된 데이터 질의 언어이다.
-- 두 종류의 언어로 구성
-  - **DDL**(Data Definition Language)  
-  :테이블의 구조를 정의하는 언어
-  - **DML**(Data Manipulation Language)  
-  :테이블에서 원하는 레코드를 읽어오고 레코드를 추가/삭제/갱신해주는데 사용하는 언어**
-
-<br>
-
-**이러한 SQL은 빅데이터 세상에서도 중요하다**
-
-- 구조화된 데이터를 다루는 한 SQL은 데이터 규모와 상관없이 쓰인다.
-- 모든 대용량 데이터 웨어하우스는 SQL기반이다.
-   -  ex. Redshift, Snowflake, BigQuery, Hive
-- Spark나 Hadoop도 SparkSQL과 Hive라는 SQL언어가 지원된다.
-- 백엔드/프론트엔드/데이터 분야 모두에서 반드시 필요한 기본 기술이다.
-  
-### SQL의 단점
-- 구조화된 데이터를 다루는데 최적화가 되어있음 (= 비구조화된 데이터)
-  - 정규표현식을 통해 비구조화된 데이터를 어느 정도 다루는 것은 가능하나 제약이 심하다.
-  - 많은 관계형 데이터베이스들이 플랫한 구조만 지원한다. (no nested like JSON)
-    - 구글 BigQuery는 nested structure를 지원한다.
-  - 비구조화된 데이터를 다루는데 **Spark, Hadoop**과 같은 분산 컴퓨팅 환경이 필요해졌다.
-  (즉 SQL만으로는 비구조화 데이터를 처리하지 못한다.)
-  - 관계형 데이터베이스마다 SQL문법이 조금씩 상이하다.
-
-### Star schema
-- Production DB용 관계형 데이터베이스에서 보통 사용한다.
-- 데이터를 논리적 단위로 나눠 저장하고 필요시 조인한다.
-- 스토리지 낭비가 덜하고 업데이트가 쉽다.
-
-### Denormalized schema
-- NoSQL이나 데이터웨어하우스에서 사용하는 방식
-  - 단위 테이블로 나눠 저장하지 않음으로 별도의 조인이 필요없는 형태
-- Star schema 보다 스토리지를 더 사용하지만 조인이 필요없기 때문에 더 빠른 계산이 가능하다.
