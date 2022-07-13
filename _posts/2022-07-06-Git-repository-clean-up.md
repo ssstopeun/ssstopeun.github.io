@@ -1,6 +1,6 @@
 ---
 title: Git repository 정리하기
-date: 2022-07-06 01:06:00 +0900
+date: 2022-07-06 13:06:00 +0900
 categories: [Git]
 tags: [GitHub] 
 author: author_id 

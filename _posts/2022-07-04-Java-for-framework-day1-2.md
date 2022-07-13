@@ -1,6 +1,6 @@
 ---
 title: Day1.Special
-date: 2022-07-04 04:30:00 +0900
+date: 2022-07-04 16:30:00 +0900
 categories: [Backend, Java for framework]
 tags: [Java, Backend, SW, SW Developer] 
 author: author_id 

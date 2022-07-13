@@ -1,6 +1,6 @@
 ---
 title: Day3.Interface
-date: 2022-07-06 05:29:00 +0900
+date: 2022-07-06 17:29:00 +0900
 categories: [Backend, Java for framework]
 tags: [Java, Backend, SW] 
 author: author_id 

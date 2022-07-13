@@ -1,6 +1,6 @@
 ---
 title: Day6-1.Database
-date: 2022-07-11 04:40:00 +0900
+date: 2022-07-11 18:40:00 +0900
 categories: [Backend, Database]
 tags: [Database, Backend, SW] 
 author: author_id 

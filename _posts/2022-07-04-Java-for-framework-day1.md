@@ -1,6 +1,6 @@
 ---
 title: Day1.Java
-date: 2022-07-04 02:00:00 +0900
+date: 2022-07-04 14:00:00 +0900
 categories: [Backend, Java for framework]
 tags: [Java, Backend, SW, Gradle] 
 author: author_id 
