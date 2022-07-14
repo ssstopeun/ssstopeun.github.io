@@ -9,6 +9,7 @@ author: author_id
 # [DAY8] MySQL 실습 (1)SELECT
 ---
 **channel class**
+
 |id|channel|
 |:---|:----------|
 |1|Instagram|
@@ -18,9 +19,11 @@ author: author_id
 |5|Facebook|
 |6|Tiktok|
 |7|Unknown|
+
 <br>
 
 **session class**
+
 |id|user_id|created|channel_id|
 |:--|:----|:-----------------|:------|
 |1|779|2019-05-01 00:36:00|5|
@@ -39,7 +42,7 @@ author: author_id
 > 테이블에서 레코드들을 읽어오는데 사용한다.  
 WHERE을 사용해 조건을 만족하는 레코드이다.
 
-```SQL
+```sql
 SELECT 필드이름1, 필드이름2, ...
 FROM 테이블이름
 WHERE 선택조건
@@ -52,7 +55,7 @@ LIMIT N;
 
 "session class 모든 것을 보여달라" 
 
-```SQL
+```sql
 SELECT *        -- *는 모든 필드를 지칭하는 표현
 FROM prod.session;  -- 앞서 USER prod;를 수행했다면 FROM session도 사용 가능
 ```
@@ -60,7 +63,7 @@ FROM prod.session;  -- 앞서 USER prod;를 수행했다면 FROM session도 사�
 <br>
 
 "session class에서 id, user_id, channel_id만 10개 보여달라"
-```SQL
+```sql
 SELECT id, user_id, channel_id
 FROM prod.session
 LIMIT 10;
@@ -69,7 +72,7 @@ LIMIT 10;
 <BR>
 
 "session class에서 channel_id 값들의 요소들을 보여라. (중복 X)"
-```SQL
+```sql
 SELECT DISTINCT channel_id  --유일한 channel_id를 알고 싶은 경우
 FROM prod.session;
 ```
@@ -77,14 +80,14 @@ FROM prod.session;
 <BR>
 
 "prod.session 의 레코드 수를 하나씩 count해라"
-```SQL
+```sql
 SELECT COUNT(1)     -- 테이블의 모든 레코드 수를 카운트, COUNT(*)
 FROM prod.session;
 ```
 <bR>
 
 "channel_id가 5인 경우만 count해라"
-```SQL
+```sql
 SELECT COUNT(1)
 FROM prod.session
 WHERE channel_id = 5;
@@ -95,7 +98,7 @@ WHERE channel_id = 5;
 - CASE WHEN 조건 THEN 참일때 값 ELSE 거짓일때 값 END 필드이름  
 - 여러 조건을 사용하여 변환하는 것도 가능
 
-```SQL
+```sql
 CASE
     WHEN 조건1 THEN 값1
     WHEN 조건2 THEN 값2
@@ -162,7 +165,8 @@ COUNT함수는 예시를 통해 알아보자.
 - NOT IN : ~ 빼고 다
 
 - EX. "channel_id가 4, 5인 것만 COUNT해라"
-```SQL
+
+```sql
 SELECT COUNT(1)
 FROM prod.session
 WHERE channel_id IN (4, 5);
@@ -176,7 +180,7 @@ WHERE channel_id IN (4, 5);
 - NOR LIKE
 - EX. "channel의 중간에 G가 들어가는 것을 COUNT해라"
 ""
-```SQL
+```sql
 SELECT COUNT(1)
 FROM prod.cannel
 WHERE channel LIKE '%G%';
@@ -205,7 +209,7 @@ WHERE channel LIKE '%G%';
     - 오름차순 일 경우, 처음
     - 내림차순 일 경우, 마지막
 
-```SQL
+```sql
 SELECT value
 FROM prod.count_test
 ORDER BY value DESC / ASC ;
@@ -224,12 +228,13 @@ ORDER BY value DESC / ASC ;
 - DATE_FORMAT
 
 예를 몇가지 보자.
+
 |created|
 |:-------|
 |2019-01-01 00:06:48|
 
 이런 class를 다음 형변환들로 필드를 추가할 수 있다.
-```SQL
+```sql
 SELECT
     created, CONVERT_TZ(created, 'GMT', 'Asia/Seoul') seoul_time,
     YEAR(created) y, QUARTER(created) q, MONTH(crated) m, MONTHNAME(created) mnn,
@@ -238,6 +243,7 @@ SELECT
     LIMIT 10;
 ```
 이렇게 되면
+
 |created|seoul_time|y|q|m|mn|d|h|m|s|
 |:-|:-|:-|:-|:-|:-|:-|:-|:-|:-|
 |2019-01-01 00:06:48|2019-01-01 09:06:48|2019|1|1|January|2019-01-01|0|6|48|
@@ -247,7 +253,7 @@ SELECT
 <br>
 
 다음은 현재시점에서 created와의 gap을 계산해주는 예시이다.
-```SQL
+```sql
 SELECT created,
     DATEDIFF(now(), created) gap_in_days,
     DATE_ADD(created, INTERVAL 10 DAY) ten_days_after_created
