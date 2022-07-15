@@ -38,6 +38,7 @@ GROUP BY 1  -- = GROUP BY mon, GROUP BY LEFT(created, 7)
 ORDER BY 1;
 ```
 ![Desktop View](/assets/img/2022.07/15-2.PNG)
+
 GROUP BY 1 이라는 것은 SELECT문의 첫번째 줄을 그룹화 하겠다는 뜻이다. 따라서 월별로 session_count가 되어 필드값이 나오는 것을 확인할 수있다.
 
 
@@ -52,6 +53,7 @@ GROUP BY 1
 ORDER BY 2 DESC;
 ```
 ![Desktop View](/assets/img/2022.07/15-3.PNG)
+
 channel_id를 그룹화하여 count를 하게 되는데 두가지 경우가 있다. 첫번째는 그저 채널의 사용수를 구하는 것이고 두번째는 한사람이 채널을 두번 사용하는 중복을 없애고 채널을 사용한 사용자 수를 구하는 것이다.  
 ORDER BY 2 를 하느냐, 3을 하느냐로 어떤요소의 내림차순으로 필드를 보여줄지 결정할 수 있다. 
 사진은 ORDER BY 2 DESC 를 한 결과이기에 session_count가 내림차순으로 보여진다.
@@ -72,6 +74,7 @@ LIMIT 1;
 
 ### 4. 월별 채널별 유니크한 사용자 수 
 > channel_id를 channel로 바꾸어 표현 **-> JOIN**
+
 이 문제는 우선 둘의 공통필드은 channel_id를 이용해 JOIN을 해야한다.   JOIN하는 법은 다음과 같다.
 ```sql
 SELECT s.id, s.user_id, s.created, s.channel_id, c.channel 
@@ -94,4 +97,5 @@ GROUP BY 1,2
 ORDER BY 1 DESC, 2;	
 -- 1을 내림차순으로 하되 같은 1안에서는 2를 오름차순으로
 ```
+
 ![Desktop View](/assets/img/2022.07/15-6.PNG)
