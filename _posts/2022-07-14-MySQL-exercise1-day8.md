@@ -1,5 +1,5 @@
 ---
-title: Day8.MySQL 실습 (SELECT 편)
+title: Day8-1.MySQL 실습 (SELECT 편)
 date: 2022-07-14 14:54:00 +0900
 categories: [Backend, Database]
 tags: [Database, Backend, SW, MySQL] 
