@@ -138,7 +138,7 @@ FROM prod.session;
 COUNT함수는 예시를 통해 알아보자.
 
 | value |
-|:-----|
+|:-|
 |NULL|
 |1|
 |1|
@@ -199,7 +199,7 @@ WHERE channel LIKE '%G%';
 
 ## ORDER BY
 ---
-- 디포트 순서는 오름차순 (작은 값부터)
+- 디폴트 순서는 오름차순 (작은 값부터)
     - ORDER BY 1 ASC
 - 내림차순(Descending)을 원하면 "DESC"
     - ORDER BY 1 DESC
@@ -216,6 +216,8 @@ ORDER BY value DESC / ASC ;
 ```
 
 ## 타입 변환
+---
+
 - DATE Conversion
     - NOW : 현재시각 return
     - 타임존 관련 변환
@@ -230,7 +232,7 @@ ORDER BY value DESC / ASC ;
 예를 몇가지 보자.
 
 |created|
-|:-------|
+|:-|
 |2019-01-01 00:06:48|
 
 이런 class를 다음 형변환들로 필드를 추가할 수 있다.
