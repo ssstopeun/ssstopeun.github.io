@@ -75,7 +75,8 @@ LIMIT 1;
 ### 4. 월별 채널별 유니크한 사용자 수 
 > channel_id를 channel로 바꾸어 표현 **-> JOIN**
 
-이 문제는 우선 둘의 공통필드은 channel_id를 이용해 JOIN을 해야한다.   JOIN하는 법은 다음과 같다.
+이 문제는 우선 둘의 공통필드은 channel_id를 이용해 JOIN을 해야한다.  
+ JOIN하는 법은 다음과 같다.
 ```sql
 SELECT s.id, s.user_id, s.created, s.channel_id, c.channel 
 FROM session s	-- session을 s로 표현하겠다.
@@ -99,3 +100,4 @@ ORDER BY 1 DESC, 2;
 ```
 
 ![Desktop View](/assets/img/2022.07/15-6.PNG)
+이렇게 JOIN 후 GROUP BY를 사용하면 두 클래스의 중복 값을 이용해 필드를 사용할 수 있다.
