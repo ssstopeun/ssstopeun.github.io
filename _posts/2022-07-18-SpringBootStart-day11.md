@@ -33,6 +33,7 @@ author: author_id
 
 ## Domain Driven Design
 ---
+
 앞으로 스프링 부분 강의를 들으면서 **주문관리 애플리케이션**을 만들 것인데 이때 나오는 몇가지 용어들을 정리하고자 한다.
 
 ### Entity
@@ -42,6 +43,7 @@ author: author_id
 
 다음 사진을 보게 되면 주문이라는 것은 지속적으로 변경되는 객체, 즉 Entity이고 주문은 주문마다 독립성을 가진다. 또한 주문 예약번호, 주문자 ID등의 식별자가 있다.  
 <br>
+
 여기서 VO는 Value Object이다.
 
 ### Value Object
