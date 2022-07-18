@@ -39,6 +39,7 @@ author: author_id
 > 앤터티는 다른 앤터티와 구별할 수 있는 식별자를 가지고 있고 시간에 흐름에 따라 지속적으로 변경되는 객체이다.
 
 ![Desktop](/assets/img/2022.07/18-4.JPG){:width:70%}
+
 다음 사진을 보게 되면 주문이라는 것은 지속적으로 변경되는 객체, 즉 Entity이고 주문은 주문마다 독립성을 가진다. 또한 주문 예약번호, 주문자 ID등의 식별자가 있다.  
 <br>
 여기서 VO는 Value Object이다.
@@ -60,6 +61,7 @@ author: author_id
 <br>
 
 ![Desktop](/assets/img/2022.07/18-5.JPG){:width:70%}
+
 여기서 Order는 FixedAmountVourcher에 의존하고 있기 때문에 FixedAmountVourcher에 수정사항이 생기면 Order에도 영향을 미친다. 이는 둘의 결합도가 강한 것으로 결합도를 느슨하게 해줄 필요가 있다.
 
 <br>
@@ -72,6 +74,7 @@ author: author_id
 <br>
 
 ![Desktop](/assets/img/2022.07/18-6.JPG){:width:70%}
+
 이렇게 하면 Order는 Voucher가 Percent이든 Fixed이든 관계없이 돌아갈 수 있다.  
 <br>
 
