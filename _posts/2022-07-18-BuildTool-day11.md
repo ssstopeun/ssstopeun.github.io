@@ -2,7 +2,7 @@
 title: Day11-1.Build Tool
 date: 2022-07-18 13:28:00 +0900
 categories: [Backend, SpringBoot]
-tags: [SpringBoot, Backend, SW] 
+tags: [SpringBoot, Backend, SW, Gradle, Maven] 
 author: author_id 
 ---
 
