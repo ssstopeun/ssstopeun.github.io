@@ -6,7 +6,7 @@ tags: [SpringBoot, Backend, SW]
 author: author_id 
 ---
 
-# Spring Framework 핵심개념 (1)
+# [Day11-2] Spring Framework 핵심개념 (1)
 
 ## 0. SpringBoot 사용법
 ---
@@ -56,6 +56,9 @@ Domain은 **비즈니스 그자체**를 말하는데 예를들어 주문관리 �
 > 값 속성이 개별적으로 변화하지 않고 **값 그 자체로 고유한 불변 객체**이다.
 
 위에 그림에서 처럼 주문의 주문자를 보자. 이는 주문자의 이름이라는 string 값 자체로 고유한 불변 객체인 것이다.  
+불변객체는 **record**를 사용하면 쉽게 만들 수 있다.  
+<br>
+
 **<span style = "background-color: #fff5b1">식별자의 유무가 Entity와 Value Object의 차이가 아니다. Value Object도 식별자를 가질 수 있다. 지속적으로 변경하는지 불변객체인지가 핵심!!!</span>**
 
 ## 3. 의존성 관리
@@ -63,10 +66,10 @@ Domain은 **비즈니스 그자체**를 말하는데 예를들어 주문관리 �
 
 ### 의존성
 > 어떤 객체가 협력하기 위해 다른 객체를 필요로 할때 두 객체 사이의 의존성이 존재하게 된다.  
-> 의존성은 실행 시점과 구현 시접에 서로 다른 의미를 가진다.
+> 의존성은 실행 시점과 구현 시점에 서로 다른 의미를 가진다.
 
 - 컴파일타임 의존성 : 코드를 작성하는 시점에서 발생하는 의존성 (클래스 사이의 의존성)
-- 런타임 의존성 : 애플리케이션이 실행되는 시점의 의존성 (객체 사이의 의존성)
+- 런타임 의존성 : 테스트할때 객체를 고르는 것으로 애플리케이션이 실행되는 시점의 의존성 (객체 사이의 의존성)
 <br>
 
 ![Desktop](/assets/img/2022.07/18-5.JPG){:width:70%}
@@ -90,8 +93,4 @@ Domain은 **비즈니스 그자체**를 말하는데 예를들어 주문관리 �
 이렇게 강한 결합도를 약한 결합도를 바꾸는게 바로 JavaFramework강의의 Interface부분에서 배웠던 부분이다.    
 참고) [Day3.Interface](https://ssstopeun.github.io/posts/Java-for-framework-day3/)
 
-### Inversion of Control (제어의 역전) : IoC
-> 제어의 흐름이 역전되는 것  
-
-- 객체가 자신이 사용할 객체를 스스로 생성, 선택하지 않는다.
-**IoC에 대해서는 추가공부가 필요한 것 같다.**
+다음시간에는 IoC, ApplicationContext, Dependency Injection에 관해 배워볼 예정이다.
