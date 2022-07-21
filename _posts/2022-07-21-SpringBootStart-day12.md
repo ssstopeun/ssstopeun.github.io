@@ -1,5 +1,5 @@
 ---
-title: Day12.Spring Framework (1)
+title: Day12.Spring Framework (2)
 date: 2022-07-21 19:50:00 +0900
 categories: [Backend, SpringBoot]
 tags: [SpringBoot, Backend, SW] 
