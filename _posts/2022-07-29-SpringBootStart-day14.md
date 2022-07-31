@@ -8,109 +8,72 @@ author: author_id
 
 # [Day14] Spring Framework 핵심개념 (4)
 
-## 컴포넌트 스캔
+## Inversion of Control (제어의 역전) : IoC
 ---
-> 컴포넌트 스캔이란 스프링이 직접 클래스를 검색해서 Bean으로 등록해주는 기능이다.
 
-설정 클래스, 즉 AppConfiguration에서 Bean으로 따로 등록하지 않아도 원하는 클래스를 빈으로 등록할 수 있다. 그 방법을 알아보자.
-
-### 1. 스트레오타입
-이는 번역하면 고정관념이라는 용어인데 UML 다이어그램을 확장시켜주는 도구로서 특정요소를 상황이나 도메인에 맞게 분류해주는 것이다.  
-우리가 spring을 사용할때 클래스의 용도에 맞게 @Component, @Controller, @Service, @Configuration 등의 스트레오타입 애노테이션을 사용하여 컴포넌트 스캔을 하도록 할 수 있다. 
-
-## Autowired
----
-> @Autowired는 Bean으로 등록이 된 상태에서 자동으로 의존성을 주입해주는 것을 말한다. 필요한 의존 객체의 타입에 해당하는 Bean을 찾아 주입하는 것이다.
-
-Autowired는 다음 3가지 경우에 사용할 수 있다.
-
-1. 생성자
-2. setter
-3. 필드
+> 제어의 흐름이 역전되는 것  
+**객체가 자신이 사용할 객체를 스스로 생성, 선택하지 않는다.**
 
 ```java
- @Autowired
-  private VoucherRepository voucherRepository;
-
-//  public VoucherService(VoucherRepository voucherRepository) {
-//    this.voucherRepository = voucherRepository;
-//  }
-```
-
-보는 것과 같이 생성자를 지우고 필드에 Autowired 어노테이션을 추가하는 것으로 의존관계를 주입할 수 있다.
-
-<br>
-
-```java
- @Autowired
-  public VoucherService(VoucherRepository voucherRepository) {
-    this.voucherRepository = voucherRepository;
-  }
-
-  public VoucherService(VoucherRepository voucherRepository, String dummy) {
-    this.voucherRepository = voucherRepository;
-  }
-```
-다음 코드를 보면 생성자가 두개가 되는데 기본적으로 생성될 생성자에게 @Autowired를 붙인다. 생성자가 하나만 있는 경우에는 @Autowired 처리를 하지 않아도 자동으로 처리가 된다.
-<br>
-
-보통 생성자에 Autowired를 사용하는 것을 권장하는데 이유는 다음과 같다.
-1. 초기화시에 필요한 모든 의존관계가 형성되기 때문에 안전하다.
-2. 잘못된 패턴을 찾을 수 있게 도와준다.
-3. 테스트를 쉽게 해준다.
-4. 불변성을 확보한다.
-
-<br>
-
-그렇다면 자동으로 의존관계를 주입해줄때 Service에서 Repository를 생성하는데 이때 Repository가 두개 이상이라면 어떤 Repository를 생성해야하는지 모르게 되는 문제가 발생한다. 이때 어떻게 해야하는지 보자.
-<br>
-
-실습중인 코드를 보면 VoucherSerive에서 VoucherRepository를 생성하는데 MemoryVoucherRepository와 jdbcVoucherRepository가 있다고 가정해보자. 그렇다면 이 VoucherRepository들을 구별시켜줘야하는데 방법은 다음과 같다.
-
-```java
-@Repository
-@Qualifier("memory")
-public class MemoryVoucherRepository implements VoucherRepository {
-    ...
+// 1. Order 스스로 Voucher를 결정하는 경우
+public class Order{
+   ...
+   
+   public Order(UUID orderid, UUID customerId, List<OrderItem> orderItems){
+      this.orderid = orderid;
+        this.customerId = customerId;
+        this.orderItems = orderItems;
+        this.voucher = new FixedAmountVoucher(UUID.randomUUID(), 10L);
+   }
 }
 
-@Repository
-@Qualifier("jdbc")
-public class jdbcVoucherRepository implements VoucherRepository {
-    ...
+// 2. 다른 class에서 어떤 Voucher를 사용할지 주입받는 IoC가 발생하는 경우
+public class Order{
+   ...
+   
+   public Order(UUID orderid, UUID customerId, List<OrderItem> orderItems, Voucher voucher){
+      this.orderid = orderid;
+        this.customerId = customerId;
+        this.orderItems = orderItems;
+        this.voucher = voucher;
+   }
 }
-```
-@Qualifier을 통해 Repository의 별칭을 정해주는 것이다. 그 후 Service의 생성자에서 이 별칭을 가지고 어떤 Repository를 기본적으로 불러올지 결정한다.
-
-```java
-public VoucherService(@Qualifier("memory") VoucherRepository voucherRepository) {
-    this.voucherRepository = voucherRepository;
+public class OrderTester {
+   public static void main(String[] args){
+      var fixedAmountVoucher = new FixedAmountvoucher(UUId.randomUUID(), 10L);
+      Order(~ , fixedAmountVoucher);
+   }
 }
 ```
 
-또한 getBean을 할때에도 
-```java 
-// getBean을 통해 VoucherRepository를 불렀을때 VoucherRepositoy가 두개라 오류가 발생한다.
-var voucherRepository = applicationContext.getBean(VoucherRepository.class);
-
-// 이렇게 생성해주어야 한다.
-var voucherRepository = BeanFactoryAnnotationUtils.qualifiedBeanOfType(applicationContext.getBeanFactory(), VoucherRepository.class, "memory");
-```
-아래와 같이 생성해주어야 하는데 특정 qualified된 Bean의 타입을 가지고 오는것으로 원하는 qualifier를 설정하여 불러올 수 있는 것이다.
+간단하게 코드로 표현해보았다.
+1번 코드의 경우 어떤 Voucher를 사용할지 Order class안에서 직접 결정하고 이는 Order가 직접 제어를 하고 있다고 말할 수있다.  
+하지만 2번의 경우 Order에서 결정하는 것이 아니라 OrderTester에서 어떤 Voucher를 사용할지 결정해 Order는 어떤 Voucher를 사용할지 주입을 받게 된다. 이것이 바로  Order가 OrderTester에 의해 제어가 되고 있는 IoC상황인 것이다.
 <br>
 
-**<span style = "background-color: #fff5b1">하지만 이런식으로 별칭을 주게 되면 사용자가 이 별칭들을 입력해줘야 하기 때문에 보통은 기본값으로 주어질 Repository에 @Primary를 주어 *이 Repository를 기본 Repository로 설정하겠다* 라는 설정을 합니다.</span>**
+실습에서는 그림과 같이 조금 더 발전해 OrderContext, 즉 IoC 컨테이너를 사용해 개별 객체들을 생성/파괴를 관장하도록 하는데 OrderService가 OrderRepository를 사용해 Order를 관리하긴 하지만 Interface로 만든 OrderRepository를 구체화하고 생성하는 역할은 OrderContext에서 처리하는 것이다.  
+IoC 컨테이너가 Runtime의 의존성을 맺게 해줌으로써 클래스간의 느슨한 결합도를 가능하게 해주는 것이다.    
+**<span style = "background-color: #fff5b1">핵심은 class가 자신이 사용할 객체를 스스로 만들지 않고 IoC 컨테이너를 통해 만들게 하여 단단한 결합도 생성을 방지한다.</span>**
+<br>
 
-## Bean Scope
+이런 IoC 컨테이너를 Spring에서는 ApplicationContext Interface를 통해 제공한다.
+## ApplicationContext
 ---
-> Bean이 어떤 범위로 생성되는지를 말한다.
+ApplicationContext는 BeanFactory를 상속하는데 객체에 대한 생성/조합/의존관계설정 등을 제어하는 IoC의 기본기능을 BeanFactory가 담당하게 된다.
 
-- singleton   
-: 기본적인 scpoe
-- prototype
-- request  
-: web 관련
-- session  
-: web 관련
-- application
-- websocket
+### Bean
+
+Bean이란 IoC Container에 의해 관리되는 객체들을 말하는데 @Bean을 통해 Bean으로 만들어진다 라고 정의한다.
+
+### Configuration Metadata
+
+스프링의 ApplicationContext는 실제 만들어야할 빈 정보를 Configuration Metadata로 부터 받아온다. 이 메타데이터를 이용해서 IoC 컨테이너에 의해 관리되는 객체들을 생성하고 구성한다. 객체들의 도면같은 느낌이라고 보면된다.
+
+### AnnotationConfigApplicationContext
+
+Java 기반으로 설정을 할 때 이 구현체를 사용해 메타데이터를 설정하고 생성할 수 있다.
+
+## Dependency Injection
+---
+
+IoC는 다양한 방법으로 만들 수 있다. 그 중 의존관계 주입패턴이 있는데 Order가 어떤 Voucher를 생성할지, OrderService가 어떤 orderRepository 객체를 생성할지 스스로 결정하는 것이 아니라 생성자를 통해 객체를 주입받는 패턴으로 이를 생성자 주입 패턴, Dependency Injection 이라고 한다.
