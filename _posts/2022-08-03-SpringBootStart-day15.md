@@ -78,6 +78,7 @@ logger.info(MessageFormat.format("logger name => {0}", logger.getName()));
 또한 log를 사용할때는 편리한 점이 MessageFormat을 사용하지 않아도 "{}"를 순서대로 인식해 값을 넣을 수 있다.
 
 <br>
+
 이 처럼 springboot는 설정없이 log를 사용할 수 있다. 그럼 직접 logback설정파일을 넣어 이 설정에 의해 log가 출력되도록 해보자.
 
 ## Logger
