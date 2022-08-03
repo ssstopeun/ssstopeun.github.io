@@ -83,7 +83,9 @@ logger.info(MessageFormat.format("logger name => {0}", logger.getName()));
 
 ## Logger
 ---
+
 ### logback 설정하기
+
 1. logback-test.xml 파일을 먼저 찾습니다.
 2. 없다면 logback.groovy 을 찾습니다.
 3. 그래도 없다면 logback.xml을 찾습니다.
@@ -92,11 +94,11 @@ logger.info(MessageFormat.format("logger name => {0}", logger.getName()));
 <br>
 
 우선 본 실습파일에는 1,2,3 이 해당이 안되기에 main.resources에 logback.xml을 추가한 후 <https://logback.qos.ch/manual/configuration.html> 여기서 **Basic Configuration file** 을 가져온다.
+
 - Basic Configuration file
-- 
+
 ```html
 <configuration>
-
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <!-- encoders are assigned the type
          ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
