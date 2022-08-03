@@ -74,6 +74,7 @@ logger.info("logger name => {}",logger.getName());
 
 logger.info(MessageFormat.format("logger name => {0}", logger.getName()));
 ```
+
 또한 log를 사용할때는 편리한 점이 MessageFormat을 사용하지 않아도 "{}"를 순서대로 인식해 값을 넣을 수 있다.
 
 <br>
@@ -91,6 +92,7 @@ logger.info(MessageFormat.format("logger name => {0}", logger.getName()));
 
 우선 본 실습파일에는 1,2,3 이 해당이 안되기에 main.resources에 logback.xml을 추가한 후 <https://logback.qos.ch/manual/configuration.html> 여기서 **Basic Configuration file** 을 가져온다.
 - Basic Configuration file
+- 
 ```html
 <configuration>
 
@@ -111,9 +113,8 @@ logger.info(MessageFormat.format("logger name => {0}", logger.getName()));
 이를 입맛대로 변경해주면 되는데
 
 ```html
-// logback.xml
+<!-- logback.xml -->
 <configuration>
-
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!-- encoders are assigned the type
              ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
@@ -138,9 +139,11 @@ logger.info(MessageFormat.format("logger name => {0}", logger.getName()));
 <br>
 
 logback.xml의 messageformat을 작성하는 부분도 살펴보자.
+
 ```html
 <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
 ```
+
 - {HH:mm:ss.SSS}  : log가 남겨진 시간
 - [%thread]       : DEBUG, INFO 와 같은 thread 이름      
 - %-5level        : -n 이면 왼쪽정렬에 n글자 / n 이면 오른쪽정렬에 n글자
@@ -171,6 +174,7 @@ logback.xml의 messageformat을 작성하는 부분도 살펴보자.
     </encoder>
 </appender>
 ```
+
 이런식으로 하면 log가 생성될때 마다 새로운 file로 생성이 된다.  
 하지만 이렇게 할 경우 log파일이 무자비하게 생성된다는 문제점이 있어 하루에 하나씩 log file이 생성되게 하는 것이 일반적이다.  
   
@@ -193,6 +197,7 @@ logback.xml의 messageformat을 작성하는 부분도 살펴보자.
     <appender-ref ref="ROLLING_FILE"/>
 </logger>
 ```
+
 이렇게 작성하여 서버를 구동하게 되면 하루에 하나의 file이 만들어지고 그날의 log들이 그 파일에 기록되게 된다.
 
 ## Conversion
