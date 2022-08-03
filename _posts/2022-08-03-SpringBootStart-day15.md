@@ -91,7 +91,7 @@ logger.info(MessageFormat.format("logger name => {0}", logger.getName()));
 
 우선 본 실습파일에는 1,2,3 이 해당이 안되기에 main.resources에 logback.xml을 추가한 후 <https://logback.qos.ch/manual/configuration.html> 여기서 **Basic Configuration file** 을 가져온다.
 - Basic Configuration file
-```XML
+```html
 <configuration>
 
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -110,7 +110,7 @@ logger.info(MessageFormat.format("logger name => {0}", logger.getName()));
 
 이를 입맛대로 변경해주면 되는데
 
-```XML
+```html
 // logback.xml
 <configuration>
 
@@ -138,7 +138,7 @@ logger.info(MessageFormat.format("logger name => {0}", logger.getName()));
 <br>
 
 logback.xml의 messageformat을 작성하는 부분도 살펴보자.
-```XML
+```html
 <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
 ```
 - {HH:mm:ss.SSS}  : log가 남겨진 시간
@@ -160,7 +160,7 @@ logback.xml의 messageformat을 작성하는 부분도 살펴보자.
 
 ### FileAppender
 
-```XML
+```html
 <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss" />
 
 <appender name="FILE" class="ch.qos.logback.core.FileAppender">
@@ -178,7 +178,7 @@ logback.xml의 messageformat을 작성하는 부분도 살펴보자.
 
 ### RollingFileAppender
 
-```XML
+```html
 <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
         <fileNamePattern>logs/access-%d{yyyy-MM-dd}.log</fileNamePattern>
@@ -200,7 +200,7 @@ logback.xml의 messageformat을 작성하는 부분도 살펴보자.
 
 conversion은 message format의 요소들의 색지정을 통해 log를 더 알아보기 쉽게 해주는 것이다.
 
-```XML
+```html
 <conversionRule
         conversionWord="clr"
         converterClass="org.springframework.boot.logging.logback.ColorConverter" />
