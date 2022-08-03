@@ -131,10 +131,10 @@ logger.info(MessageFormat.format("logger name => {0}", logger.getName()));
 </configuration>
 ```
 
-이때 <root level = "..."> 는 전체 class에 대한 log의 level을 설정해주게 된다. <root level="warn">이라 설정했으니 warn이상의 log는 모두 나오는 것이다.  
+이때 **root level = "..."** 는 전체 class에 대한 log의 level을 설정해주게 된다. **root level="warn"** 이라 설정했으니 warn이상의 log는 모두 나오는 것이다.  
   
 하지만 org.prgrms.kdt 하위 class는 debug이상으로 나오게 하고싶다면?  
-<logger name = "org.prgrms.kdt" level = "debug"> 를 추가해 설정해 주어야한다. 이것이 바로 위에서 말했던 "."기준으로 log level이 설정된다고 했던 부분을 적용한 것이다.
+**logger name = "org.prgrms.kdt" level = "debug"** 를 추가해 설정해 주어야한다. 이것이 바로 위에서 말했던 "."기준으로 log level이 설정된다고 했던 부분을 적용한 것이다.
 
 <br>
 
