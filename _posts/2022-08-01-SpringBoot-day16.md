@@ -1,11 +1,10 @@
 ---
-title: Day15.SpringTest
-date: 2022-08-03 18:00:00 +0900
+title: Day16.SpringTest
+date: 2022-08-03 15:00:00 +0900
 categories: [Backend, SpringBoot]
 tags: [SpringBoot, Backend, SW, SpringTest] 
 author: author_id 
 ---
-
 # [Day16] SpringTest
 
 ## 1. 소프트웨어 테스팅
