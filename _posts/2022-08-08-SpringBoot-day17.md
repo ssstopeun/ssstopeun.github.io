@@ -20,3 +20,7 @@ author: author_id
 
 ## JDBC 준비하기
 ---
+우선 JDBC를 준비하는 과정에서 굉장히 많은 삽질을 했다. 결론은 처음 MySQL Installer자체를 잘못 설치했기 때문이었다. 나는 window 환경에서 설치를 하였고 이 블로그를 참고하여 깔끔하게 해결하였다.  
+<https://blog.naver.com/tipsware/221303627201>
+
+
