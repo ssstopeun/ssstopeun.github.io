@@ -1,11 +1,11 @@
 ---
-title: Day17.JDBC
+title: Day17.JDBC & JAVA
 date: 2022-08-08 13:00:00 +0900
 categories: [Backend, SpringBoot]
 tags: [SpringBoot, Backend, SW, JDBC] 
 author: author_id 
 ---
-# [Day17] JDBC
+# [Day17] JDBC & JAVA
 > **JDBC는 Java Data Base Connecter의 약자**로 Java Application과 DataBase를 연결할때의 표준을 알려준다.
 
 - 백엔드 개발자는 JDBC API를 이용하여 Query에 요청을 하는 등의 작업을 수행한다.
@@ -151,4 +151,4 @@ static UUID toUUID(byte[] bytes){
 
 <br>
 
-이와 오늘은 delete, select, insert 등과 같은 mySql query로 작성할 수 있는 것을 Java Application에서 작성하여 작업을 수행해 보았다.
+이와 같이 오늘은 delete, select, insert 등과 mySql query로 작성할 수 있는 것을 Java Application에서 작성하여 작업을 수행해 보았다.
