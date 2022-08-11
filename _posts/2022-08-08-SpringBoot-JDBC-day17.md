@@ -1,6 +1,6 @@
 ---
 title: Day17.JDBC & JAVA
-date: 2022-08-08 13:00:00 +0900
+date: 2022-08-09 17:00:00 +0900
 categories: [Backend, SpringBoot]
 tags: [SpringBoot, Backend, SW, JDBC] 
 author: author_id 
