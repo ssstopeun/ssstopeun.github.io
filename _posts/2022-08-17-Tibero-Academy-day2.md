@@ -19,7 +19,7 @@ author: author_id
   7. Tibero 인스턴스 기동 (normal 모드)
   8. System object 생성용 shell 실행
 
-이 순서대로 실습한 과정을 살펴보자. 지금의 과정은 실행해야하는 T1 Virtual Machine과 putty가 설치되어 있는 환경을 바탕으로 진행되었다.
+이 순서대로 실습한 과정을 살펴보자. 실습 과정은 실행해야하는 T1 Virtual Machine과 putty가 설치되어 있는 환경을 바탕으로 진행되었다.
 
 ## 0. 환경실행 & linux 명령어
 ---
