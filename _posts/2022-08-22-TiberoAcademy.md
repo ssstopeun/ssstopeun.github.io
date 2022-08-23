@@ -8,7 +8,7 @@ author: author_id
 
 # Tibero Database Link
 
-![Desktop View](/assets/img/2022.08/22-1.jpg){: width="70%" }
+![Desktop View](/assets/img/2022.08/22-1.JPG){: width="70%" }
 
 - B 에 특화된 GateWay를 사용하여야 한다.
 - GateWay의 역할은 B와 A의 연결을 위해 변형을 하는 역할을 한다.
@@ -53,7 +53,7 @@ drop public database link public_tibero;
 
 ## Tibero to Tibero (TtoT)
 
-![Desktop View](/assets/img/2022.08/22-2.png){: width="70%" }
+![Desktop View](/assets/img/2022.08/22-2.PNG){: width="70%" }
 
 다음그림은 실습진행의 architecture이다. Tibero to Tibero이니 왼쪽의 PC에 있는 Virtualbox안에 T1 서버도 Tibero환경, 오른쪽의 강사가 셋팅한 서버또한 Tibero환경이다. 따라서 두 환경사이에서는 GateWay없이 쿼리와 결과를 전달받을 수 있다.
 
@@ -62,7 +62,7 @@ drop public database link public_tibero;
 ## Tibero to Oracle (TtoO)
 > 제일 처음 사진의 A가 Tibero, B가 Oracle인 환경으로 Tibero to Tibero 와 다르게 링크의 대상이 Oracle이기 때문에 Oracle을 위한 Gateway가 필요하다. Tibero는 필요한 질의를 Oracle Gateway로 전달하고 Gateway는 Oracle에 접속하여 질의를 수행한 후 Tibero에게 전송해준다.
 
-![Desktop View](/assets/img/2022.08/23-1.png){: width="70%" }
+![Desktop View](/assets/img/2022.08/23-1.PNG){: width="70%" }
 
 다음 그림을 보자면 우리가 Client API를 통해 Tibero에 질의를 작성하고 이 질의를 TBGW라는 Gateway를 통해 OracleClient에게 전달하고 이 질의를 수행한 후 다시 Tibero에게 주는 것이다.
 <br>
