@@ -44,3 +44,15 @@ drop public database link public_tibero;
 > Private DBLink를 생성하기 위해서는 create database link권한이 있어야 한다.
 
 생성과 제거는 Public DBLink와 같지만 사용하기 위해서는 권한이 필요하다는 차이가 있다.
+
+<br>
+
+그렇다면 Tibero to Tibero 와 Tibero to Oracle을 하는 과정을 실습과 함께 알아보자.
+<br>
+
+
+## Tibero to Tibero (TtoT)
+
+![Desktop View](/assets/img/2022.08/22-2.png){: width="70%" }
+
+다음그림은 실습진행의 architecture이다. Tibero to Tibero이니 왼쪽의 PC에 있는 Virtualbox안에 T1 서버도 Tibero환경, 오른쪽의 강사가 셋팅한 서버또한 Tibero환경이다. 따라서 두 환경사이에서는 GateWay없이 쿼리와 결과를 전달받을 수 있다.
