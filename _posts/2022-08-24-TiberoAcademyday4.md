@@ -10,10 +10,12 @@ author: author_id
 > Tibero Tool이란 Tibero에서 제공하는 각종 유틸리티 도구로 이 도구들의 사용법에 대한 학습을 한다.
 
 ## 0. Tibero Utility
+---
 > Tibero Utility에는 tbSQL, tbStudio, tbExport/tbImport, tbLoader, T-Up, 기타 Utility (tbrmgr, tbpc, tbdv) 이 있고 이들을 하나씩 알아보겠다.
 
 ## 1. tbSQL
-> tbSQL은 앞서 실습에서 계속 사용했던 기능으로 **$tbsql**로 실행시켜 일반적인 SQL 문장 및 tbPSM 프로그램을 입력, 편집, 저장, 실행할 수 있다.
+---
+> tbSQL은 앞서 실습에서 계속 사용했던 기능으로 **\$tbsql**로 실행시켜 일반적인 SQL 문장 및 tbPSM 프로그램을 입력, 편집, 저장, 실행할 수 있다.
 
 <주요기능>
 - 트랜잭션 설정 및 종료
@@ -24,6 +26,7 @@ author: author_id
 - tbSQL 환경 설정
 
 ## 2. tbStudio
+---
 > 처음 배운 Tibero tool로 마치 mySQL workbench 같은 느낌이었다. 이는 Tibero를 이용하는 개발을 돕는 GUI Tool로써 개발에 필요한 기능과 환경을 제공한다.  
 그 중 주요기능인 Export/Import 기능을 실습해 보았다.
 
@@ -62,5 +65,7 @@ Import를 하고나면 다시 DEPT Table이 조회되는 것을 알 수 있다.
 이 과정은 putty의 shell환경에서도 tbExport/tbImport로 할 수 있다.
 
 ## tbExport/tbImport
+---
 
 ## tbLoader
+---

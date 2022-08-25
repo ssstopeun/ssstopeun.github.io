@@ -15,13 +15,17 @@ author: author_id
 - GateWay 구성을 위해 Client Library가 필요하고 이는 설치, 설정문제에서 보다 복잡하다.
 
 ## Tibero to Tibero (TtoT)
+---
 - 위의 사진에서 A, B가 Tibero인 경우이다.
 - 이 경우에는 A와 B가 같아 변형이 필요없기 때문에 GateWay가 필요없다.
 
 ## Tibero to Oracle (TtoO)
+---
 - GateWay가 사용할 Oracle Interface Driver가 필요하다.  
 
+
 ## Public DBLink
+---
 > 데이터베이스 링크를 생성한 사용자와 다른 사용자들도 데이터베이스 링크를 이용할 수 있.
 > Public DBLink를 생성하기 위해서는 create public database link 권한이 있어야 한다.
 
@@ -40,6 +44,7 @@ drop public database link public_tibero;
 ```
 
 ## Private DBLink
+---
 > 데이터베이스 링크를 생성한 사용자만 데이터베이스 링크를 사용할 수 있다.
 > Private DBLink를 생성하기 위해서는 create database link권한이 있어야 한다.
 
@@ -52,6 +57,7 @@ drop public database link public_tibero;
 
 
 ## Tibero to Tibero (TtoT)
+---
 
 ![Desktop View](/assets/img/2022.08/22-2.PNG){: width="70%" }
 
@@ -60,6 +66,7 @@ drop public database link public_tibero;
 
 
 ## Tibero to Oracle (TtoO)
+---
 > 제일 처음 사진의 A가 Tibero, B가 Oracle인 환경으로 Tibero to Tibero 와 다르게 링크의 대상이 Oracle이기 때문에 Oracle을 위한 Gateway가 필요하다. Tibero는 필요한 질의를 Oracle Gateway로 전달하고 Gateway는 Oracle에 접속하여 질의를 수행한 후 Tibero에게 전송해준다.
 
 ![Desktop View](/assets/img/2022.08/23-1.PNG){: width="70%" }
@@ -176,6 +183,7 @@ MOF=(
 
 
 ## 티베로 유틸리티 특징
+---
 - 접속 정보가 필요하다. (5가지) 
     - ip
     - port
