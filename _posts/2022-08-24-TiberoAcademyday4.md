@@ -41,6 +41,7 @@ author: author_id
 <br>
 
 ![Desktop View](/assets/img/2022.08/24-3.PNG){: width="70%" }
+
 그 후 DEPT table을 삭제하고 select문을 통해 DEPT Table이 존재하지 않는 것을 확인했다. 
 <br>
 
@@ -49,10 +50,12 @@ author: author_id
 ### Import
 
 ![Desktop View](/assets/img/2022.08/24-4.PNG){: width="70%" }
+
 이렇게 가져올 수 있는데 파일 속 내용중 User와 Table을 입력하여 Import가 가능하고 실습에서는 Tibero user에 아까 drop한 DEPT Talbe을 Import해주었다.
 <br>
 
 ![Desktop View](/assets/img/2022.08/24-5.PNG){: width="70%" }
+
 Import를 하고나면 다시 DEPT Table이 조회되는 것을 알 수 있다.
 
 <br>
