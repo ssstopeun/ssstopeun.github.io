@@ -31,6 +31,7 @@ author: author_id
 <br>
 
 ![Desktop View](/assets/img/2022.08/24-1.PNG){: width="70%" }
+
 우선 초기 data를 보면 이렇게 DEPT Table과 그 속의 4개의 columns이 존재하는 것을 볼 수 있다. 그렇다면 이 자료를 Export를 통해 binary파일로 저장해놓고 Dept Table을 삭제한 후 binary파일을 import하여 다시 가져와보겠다.
 
 ### Export
