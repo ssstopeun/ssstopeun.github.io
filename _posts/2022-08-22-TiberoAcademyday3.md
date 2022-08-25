@@ -94,9 +94,29 @@ SQL> create database link TLINK connecto to edu identified 'edu' 2 using 'tibero
 
 그 후 Link가 잘 되었는지 확인해보았다.
 
-![Desktop View](/assets/img/2022.08/25-1.PNG){: align="left" }
+![Desktop View](/assets/img/2022.08/25-1.PNG)
 
+<br>
 
+이렇게 설정이 잘됐으면 연결된 서버의 data를 사용할때 **@Link이름**을 붙이면 된다. 그럼 data를 가져와 로컬서버에 저장해보자.
+
+### 3. Data가져오기
+- 테이블과 데이터를 모두 가져오기
+```SQL
+SQL> CREATE TABLE DEPT AS FROM DEPT@TLINK;
+```
+<br>
+
+- 테이블을 만들어놓고 데이터만 가져오기
+```SQL
+SQL> CREATE TABLE DEPT AS SELECT * FROM DEPT@TLINK WHERE ROWNUM < 1;
+SQL> INSERT INTO DEPT SELECT * FROM DEPT@TLINK;
+```
+<br>
+
+![Desktop View](/assets/img/2022.08/25-1.PNG)
+
+이렇게 잘 들어온것을 확인할 수 있다 :)
 
 ## Tibero to Oracle (TtoO)
 ---

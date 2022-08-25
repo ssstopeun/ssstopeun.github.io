@@ -1,6 +1,6 @@
 ---
 title: Tibero Lecture4. Tibero Tools
-date: 2022-08-24 15:00:00 +0900
+date: 2022-08-24 15:57:13 +0900
 categories: [Tibero DBMS, Education]
 tags: [Tibero, Backend, SW, DBMS] 
 author: author_id 
@@ -66,6 +66,29 @@ Import를 하고나면 다시 DEPT Table이 조회되는 것을 알 수 있다.
 
 ## tbExport/tbImport
 ---
+> shell 환경에서 이루어지는 export/import로 로컬 tibero에서 full모드로 export하고 dept 테이블을 일부러 손상시킨 후 export해놓은 파일을 import해 데이터를 복원하는 과정을 진행할 것이다.
+
+![Desktop View](/assets/img/2022.08/24-5.PNG){: width="70%" }
+
+다음과 같이 tibero에 tbexport, tbimport기능이 있는것을 확인할 수 있다.
+
+### 1. tbexport하기
+> 우선 tbexport를 이용하여 full모드로 export를 진행하여 data의 내용을 파일로 저장한다.
+
+```bash
+[tibero@T1:/tibero]$ mkdir expimp
+[tibero@T1:/tibero]$ cd expimp
+```
+
+tbexport를 할때 생성될 파일을 저장할 디렉토리부터 생성해준다.
+
+```bash
+[tibero@T1:/tibero/expimp]$ tbexport IP=localhost PORT=8629 SID=tibero USERNAME=sys PASSWORD=tibero FULL=Y FILE=/tibero/expimp/default.dat SCRIPT=Y
+```
+
+tbexport의 타겟이되는 서버의 IP, PORT번호, SID, USERNAME, PASSWORD를 입력해주고 본 실습에서는 FULL로 export할 것이라 FULL=Y, 그리고 이 파일이 저장될 경로와 파일이름을 지정해준다. 파일이름은 default.dat으로 tbStudio에서 진행한 Export 파일의 이름과 동일하다.
 
 ## tbLoader
 ---
+
+## T-UP
