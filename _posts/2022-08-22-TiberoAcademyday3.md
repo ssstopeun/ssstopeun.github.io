@@ -1,6 +1,6 @@
 ---
 title: Tibero Lecture3. Tibero Database Link
-date: 2022-08-22 15:00:00 +0900
+date: 2022-08-22 14:27:48 +0900
 categories: [Tibero DBMS, Education]
 tags: [Tibero, Backend, SW, DBMS] 
 author: author_id 
@@ -62,6 +62,39 @@ drop public database link public_tibero;
 ![Desktop View](/assets/img/2022.08/22-2.PNG){: width="70%" }
 
 다음그림은 실습진행의 architecture이다. Tibero to Tibero이니 왼쪽의 PC에 있는 Virtualbox안에 T1 서버도 Tibero환경, 오른쪽의 강사가 셋팅한 서버또한 Tibero환경이다. 따라서 두 환경사이에서는 GateWay없이 쿼리와 결과를 전달받을 수 있다.
+<br>
+
+### 1. Tibero 클라이언트 설정
+> 사진 속 왼쪽환경에서 오른쪽 환경에 대한 설정을 해주는 것으로 PC Virtualbox안에 T1서버의 tbdsn.tbr파일에 강사님이 셋팅한 서버의 정보를 입력해준다.
+<br>
+
+다음은 실습때 진행한 강사님이 셋팅한 서버로 연결할 서버에 맞게 tbdsn.tbr파일에 추가해주면 된다.
+```
+Tibero2=(
+        (INSTANCE=(HOST=10.188.191.33)
+                  (PORT=8629)
+                  (DB_NAME=tibero)
+        )
+)
+```
+
+### 2. tbsql을 통해 DB Link Object 생성
+> 서버를 설정했으니 이 서버에 접근해 DB Link Object를 생성한다. 
+
+```
+SQL> create database link <DB Link명> connect tso <접속 사용자 ID>
+identified by <접속 패스워드> 2 using <접속에 사용할 alias>
+```
+<br>
+
+적용한 것은 다음과 같다.
+```
+SQL> create database link TLINK connecto to edu identified 'edu' 2 using 'tibero'
+```
+
+그 후 Link가 잘 되었는지 확인해보았다.
+
+![Desktop View](/assets/img/2022.08/25-1.PNG){ float: left; }
 
 
 
@@ -94,6 +127,7 @@ drwxr-xr-x  2 tibero dba       233 Aug 23 10:46 instantclient_19_16
 ```bash
 [tibero@T1:/tibero]$ vi ~/.bash_profile
 ```
+
 - 우선 /.bash_profile을 통해 gateway와 oracle의 home 경로를 설정해준다.
 <br>
 
@@ -106,6 +140,7 @@ export LIBPATH=$ORACLE_HOME:$LIBPATH
 export LD_LIBRARY_PATH=$LIBPATH:$LD_LIBRARY_PATH
 export PATH=$ORACLE_HOME:$PATH
 ```
+
 - TBGW_HOME과 ORACLE_HOME만 본인의 환경에 맞게 설정해주면되는데 gateway의 home과 연결할 Oracle의 home 경로를 다음과 같이 설정해준다.
 - .bash_profile을 수정할때는 source  ~/.bash_profile 을 통해 반영을 꼭 해주자!
 <br>
@@ -165,6 +200,7 @@ MAX_LOG_SIZE=50240000
 ```bash
 [tibero@T1:/tibero]$ vi $TB_HOME/client/config/tbdsn.tbr
 ```
+
 ```
 MOF=(
     (GATEWAY=(LISTENER=(HOST=localhost)(PORT=9998))
@@ -173,7 +209,9 @@ MOF=(
     )
 )
 ```
+
 - 이 과정으로 연결할 Oracle network의 정보를 입력하였다. 여길보면 MOF의 Port 번호가 tbgw.cfg에서 설정한 port번호가 같음을 알 수있다.
+
 - **여기서 MOF= 이 아니라 MOF(공백)= 이라고 처음에 작성해 오류가 났었다. 이름뒤에 띄어쓰기 없이 = 을 써야한다.**
 
 ### 7. DB Link 생성 및 확인
