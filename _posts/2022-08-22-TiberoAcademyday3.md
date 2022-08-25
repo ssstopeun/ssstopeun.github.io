@@ -94,7 +94,7 @@ SQL> create database link TLINK connecto to edu identified 'edu' 2 using 'tibero
 
 그 후 Link가 잘 되었는지 확인해보았다.
 
-![Desktop View](/assets/img/2022.08/25-1.PNG){ float: left; }
+![Desktop View](/assets/img/2022.08/25-1.PNG){: float="left" }
 
 
 
