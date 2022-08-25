@@ -69,7 +69,7 @@ drop public database link public_tibero;
 
 그렇다면 이를 수행할 수 있는 환경을 조성해보자.
 
-1. 오라클 클라이언트 파일 설치
+### 1. 오라클 클라이언트 파일 설치
 - Tibero to Tibero와 다른 것은 직접 Gateway의 설정을 해주는 것이다. 경로 설정을 통해 Tibero에서 Gateway를 통과했을때 Oracle Client로 향해 기능을 수행할 수 있도록 설정해 주는 것이다.
 
 ```bash
@@ -81,7 +81,7 @@ drwxr-xr-x  2 tibero dba       233 Aug 23 10:46 instantclient_19_16
 - 이를 통해 zip파일의 압축을 풀어주면 instanclient_19_16 폴더가 위치하게 된다. 이것이 오라클 클라이언트 파일이다.
 <br>
 
-2. Gateway 환경작업
+### 2. Gateway 환경작업
 - 파일을 설치했다면 이 파일에 맞춰진 gateway 환경설정을 해주어야 한다.
 
 ```bash
@@ -103,7 +103,7 @@ export PATH=$ORACLE_HOME:$PATH
 - .bash_profile을 수정할때는 source  ~/.bash_profile 을 통해 반영을 꼭 해주자!
 <br>
 
-3. tnsnames.ora 생성 및 설정
+### 3. tnsnames.ora 생성 및 설정
 ```bash
 [tibero@T1:/tibero]$ mkdir -p $ORACLE_HOME/network/admin
 [tibero@T1:/tibero]$ cd       $ORACLE_HOME/network/admin
@@ -123,14 +123,14 @@ ORCL =
 - 다음의 경로로 tnsnames.ora 파일을 생성하고 위의 txt를 추가하였다. 이는 연결된 Oracle에 대한 접속정보를 설정하는 것이다.
 <br>
 
-4. Gateway 바이너리 복사
+### 4. Gateway 바이너리 복사
 ```bash
 [tibero@T1:/tibero]$ cp /tibero/tibero7/client/bin/gw4orcl   /tibero/tbgateway
 ```
 - gw4orcl 이 Tibero에서 제공하는 gateway기능이라고 보면 되는데 이를 /tibero/tbgateway에 위치시키고 tibero to Oracle이 가능하도록 해준다.
 <br>
 
-5. Gateway 환경설정
+### 5. Gateway 환경설정
 - 위의 복사한 Gateway바이너리를 tbgw.cfg 파일을 통해 tibero to Oracle이 가능하도록 설정해주는 과정이다.
 
 ```bash
@@ -152,7 +152,7 @@ MAX_LOG_SIZE=50240000
 - 이 파일은 Gateway설정파일로 원래 Tibero에서 진행되었을때는 gateway가 필요없어서 설정해줄 필요가 없었지만 Tibero to Oracle을 할때는 사용자가 Gateway와 관련된 설정값을 변경해주어야 하기 때문에 필요한 설정이다.
 <br>
 
-6. Network Alias 설정
+### 6. Network Alias 설정
 - Tibero 클라이언트의 Network Alias 설정파일인 tbdsn.tbr 파일에 Gateway의 정보를 설정해주는 과정이다.
 
 ```bash
@@ -169,7 +169,7 @@ MOF=(
 - 이 과정으로 연결할 Oracle network의 정보를 입력하였다. 여길보면 MOF의 Port 번호가 tbgw.cfg에서 설정한 port번호가 같음을 알 수있다.
 - **여기서 MOF= 이 아니라 MOF(공백)= 이라고 처음에 작성해 오류가 났었다. 이름뒤에 띄어쓰기 없이 = 을 써야한다.**
 
-7. DB Link 생성 및 확인
+### 7. DB Link 생성 및 확인
 ```bash
 [tibero@T1:/tibero]$ cd $TBGW_HOME
 ```
