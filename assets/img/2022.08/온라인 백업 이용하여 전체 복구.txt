@@ -1,0 +1,695 @@
+< 온라인 백업 이용하여 전체 복구 >
+
+- 장애: 모든 데이터 파일, 컨트롤 파일, 리두로그, 아카이브로그 파일 삭제됨 
+       rm /tibero/tbdata/tibero/*.dtf
+	   rm /tibero/tbdata/tibero/*.log
+       rm /tibero/tbdata/tibero/*.ctl
+       rm /tibero/tbdata/tibero/arch/*.arc
+	   rm /tibero/tbdata/tibero/.passwd
+	   
+	   tbdown abnormal
+
+- 복구: 온라인 백업 파일 이용하여 복구하기
+       - 온라인백업 파일 리스토어
+	   - 컨트롤파일 복구
+	   - 데이터파일 복구
+	   - 리두로그파일 복구
+	   - 데이터베이스 오픈 이후 tempfile 추가하기
+	   - 전체 백업하기
+	   
+	   
+	   
+
+[tibero@T1:/tibero]$ ls -l /tibero/tbdata/tibero
+total 1010208
+drwxr-xr-x 2 tibero dba       251 Aug 25 16:26 arch
+-rwxr-x--- 1 tibero dba  74465280 Aug 25 16:37 c1.ctl
+-rwxr-x--- 1 tibero dba  74465280 Aug 25 16:37 c2.ctl
+drwx------ 3 tibero dba        17 Aug 23 09:43 java
+-rwxr-x--- 1 tibero dba  52428800 Aug 25 16:26 log01.log
+-rwxr-x--- 1 tibero dba  52428800 Aug 25 16:26 log11.log
+-rwxr-x--- 1 tibero dba  52428800 Aug 25 16:30 log21.log
+-rwxr-x--- 1 tibero dba  52428800 Aug 25 16:26 syssub001.dtf
+-rwxr-x--- 1 tibero dba 171966464 Aug 25 16:30 system001.dtf
+-rwxr-x--- 1 tibero dba 104857600 Aug 25 11:39 temp001.dtf
+-rwxr-x--- 1 tibero dba 209715200 Aug 25 16:30 undo001.dtf
+-rwxr-x--- 1 tibero dba 136839168 Aug 25 16:26 USERS01.dtf
+-rwxr-x--- 1 tibero dba  52428800 Aug 25 16:26 usr001.dtf
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ tbsql sys/tibero
+
+tbSQL 7
+
+TmaxTibero Corporation Copyright (c) 2020-. All rights reserved.
+
+Connected to Tibero.
+
+SQL>
+SQL> quit
+Disconnected.
+[tibero@T1:/tibero]$ rm /tibero/tbdata/tibero/*.dtf
+[tibero@T1:/tibero]$ rm /tibero/tbdata/tibero/*.log
+[tibero@T1:/tibero]$ rm /tibero/tbdata/tibero/*.ctl
+[tibero@T1:/tibero]$ rm /tibero/tbdata/tibero/arch/*.arc
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ ls -al /tibero/tbdata/tibero
+total 4
+drwxr-xr-x 4 tibero dba 45 Aug 25 16:39 .
+drwxr-xr-x 3 tibero dba 20 Aug 25 16:25 ..
+drwxr-xr-x 2 tibero dba  6 Aug 25 16:39 arch
+drwx------ 3 tibero dba 17 Aug 23 09:43 java
+-rwxr-x--- 1 tibero dba 44 Aug 25 16:23 .passwd
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ rm /tibero/tbdata/tibero/.passwd
+[tibero@T1:/tibero]$ ls -al /tibero/tbdata/tibero
+total 0
+drwxr-xr-x 4 tibero dba 30 Aug 25 16:40 .
+drwxr-xr-x 3 tibero dba 20 Aug 25 16:25 ..
+drwxr-xr-x 2 tibero dba  6 Aug 25 16:39 arch
+drwx------ 3 tibero dba 17 Aug 23 09:43 java
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ tbdown abnormal
+Tibero instance terminated (ABNORMAL mode).
+
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ ls -al /tibero/s/on_backup/
+total 739701
+drwxrwx--- 1 root vboxsf      4096 Aug 25 14:43 .
+drwxrwx--- 1 root vboxsf      4096 Aug 25 14:13 ..
+-rwxrwx--- 1 root vboxsf      3898 Aug 25 14:29 crectl.sql
+-rwxrwx--- 1 root vboxsf    165888 Aug 25 14:40 log-t0-r0-s10.arc
+-rwxrwx--- 1 root vboxsf  27481088 Aug 25 14:40 log-t0-r0-s5.arc
+-rwxrwx--- 1 root vboxsf    430592 Aug 25 14:40 log-t0-r0-s6.arc
+-rwxrwx--- 1 root vboxsf     10240 Aug 25 14:40 log-t0-r0-s7.arc
+-rwxrwx--- 1 root vboxsf     53760 Aug 25 14:40 log-t0-r0-s8.arc
+-rwxrwx--- 1 root vboxsf   1046528 Aug 25 14:40 log-t0-r0-s9.arc
+-rwxrwx--- 1 root vboxsf        44 Aug 25 14:43 .passwd
+-rwxrwx--- 1 root vboxsf  52428800 Aug 25 14:22 syssub001.dtf
+-rwxrwx--- 1 root vboxsf 171966464 Aug 25 14:22 system001.dtf
+-rwxrwx--- 1 root vboxsf 104857600 Aug 25 14:22 temp001.dtf
+-rwxrwx--- 1 root vboxsf       253 Aug 25 14:43 tibero.tip
+-rwxrwx--- 1 root vboxsf 209715200 Aug 25 14:22 undo001.dtf
+-rwxrwx--- 1 root vboxsf 136839168 Aug 25 14:22 USERS01.dtf
+-rwxrwx--- 1 root vboxsf  52428800 Aug 25 14:22 usr001.dtf
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ cp /tibero/s/on_backup/*.dtf        /tibero/tbdata/tibero
+[tibero@T1:/tibero]$ cp /tibero/s/on_backup/crectl.sql   /tibero/tbdata/tibero
+[tibero@T1:/tibero]$ cp /tibero/s/on_backup/*.arc        /tibero/tbdata/tibero/arch
+[tibero@T1:/tibero]$ cp /tibero/s/on_backup/.passwd      /tibero/tbdata/tibero
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ ls -l /tibero/tbdata/tibero/*.dtf
+-rwxr-x--- 1 tibero dba  52428800 Aug 25 16:42 /tibero/tbdata/tibero/syssub001.dtf
+-rwxr-x--- 1 tibero dba 171966464 Aug 25 16:42 /tibero/tbdata/tibero/system001.dtf
+-rwxr-x--- 1 tibero dba 104857600 Aug 25 16:42 /tibero/tbdata/tibero/temp001.dtf
+-rwxr-x--- 1 tibero dba 209715200 Aug 25 16:42 /tibero/tbdata/tibero/undo001.dtf
+-rwxr-x--- 1 tibero dba 136839168 Aug 25 16:42 /tibero/tbdata/tibero/USERS01.dtf
+-rwxr-x--- 1 tibero dba  52428800 Aug 25 16:42 /tibero/tbdata/tibero/usr001.dtf
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ ls -l /tibero/tbdata/tibero/arch
+total 28520
+-rwxr-x--- 1 tibero dba   165888 Aug 25 16:43 log-t0-r0-s10.arc
+-rwxr-x--- 1 tibero dba 27481088 Aug 25 16:43 log-t0-r0-s5.arc
+-rwxr-x--- 1 tibero dba   430592 Aug 25 16:43 log-t0-r0-s6.arc
+-rwxr-x--- 1 tibero dba    10240 Aug 25 16:43 log-t0-r0-s7.arc
+-rwxr-x--- 1 tibero dba    53760 Aug 25 16:43 log-t0-r0-s8.arc
+-rwxr-x--- 1 tibero dba  1046528 Aug 25 16:43 log-t0-r0-s9.arc
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ ls -l /tibero/tbdata/tibero/.passwd
+-rwxr-x--- 1 tibero dba 44 Aug 25 16:43 /tibero/tbdata/tibero/.passwd
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ ls -l /tibero/tbdata/tibero/crectl.sql
+-rwxr-x--- 1 tibero dba 3898 Aug 25 16:42 /tibero/tbdata/tibero/crectl.sql
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ ls -l /tibero/tbdata/tibero
+total 711172
+drwxr-xr-x 2 tibero dba       151 Aug 25 16:43 arch
+-rwxr-x--- 1 tibero dba      3898 Aug 25 16:42 crectl.sql
+drwx------ 3 tibero dba        17 Aug 23 09:43 java
+-rwxr-x--- 1 tibero dba  52428800 Aug 25 16:42 syssub001.dtf
+-rwxr-x--- 1 tibero dba 171966464 Aug 25 16:42 system001.dtf
+-rwxr-x--- 1 tibero dba 104857600 Aug 25 16:42 temp001.dtf
+-rwxr-x--- 1 tibero dba 209715200 Aug 25 16:42 undo001.dtf
+-rwxr-x--- 1 tibero dba 136839168 Aug 25 16:42 USERS01.dtf
+-rwxr-x--- 1 tibero dba  52428800 Aug 25 16:42 usr001.dtf
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ tbboot nomount
+Change core dump dir to /tibero/tibero7/bin/prof.
+Listener port = 8629
+
+Tibero 7
+
+TmaxTibero Corporation Copyright (c) 2020-. All rights reserved.
+Tibero instance started up (NOMOUNT mode).
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ ls -l /tibero/tbdata/tibero/crectl.sql
+-rwxr-x--- 1 tibero dba 3898 Aug 25 16:42 /tibero/tbdata/tibero/crectl.sql
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ cat /tibero/tbdata/tibero/crectl.sql
+-- Below are two sets of SQL statements, each of which
+--  1) recreates a new control file
+--  2) opens the database
+--  3) adds temp files
+--  4) adds the RMGR backup_sets
+
+-- The 1st set opens the database with the NORESETLOGS option.
+-- It should be used only if the current online redo logfiles are all available
+-- and can be reused for the database.
+-- Additional archive logfiles may be required for the media recovery.
+
+-- The 2nd set opens the database with the RESETLOGS option.
+-- It should be used only if the current online redo logfiles are unavailable.
+-- The current online redo logfiles will be all invalidated and initialized.
+-- Please be aware of the resetlogs operation of the database.
+
+-- Each set can be edited and executed as needed.
+-- Please be cautious to choose only one and appropriate option,
+-- either NORESETLOGS or RESETLOGS, and edit it correctly before executing it.
+
+-- The set corresponding to the option specified in the backup SQL statement
+-- used to create this trace file is shown right below with priority.
+
+
+---- Set #1. NORESETLOGS case
+CREATE CONTROLFILE REUSE DATABASE "tibero"
+LOGFILE
+-- Thread #0
+GROUP 0         '/tibero/tbdata/tibero/log01.log' SIZE 50M,
+GROUP 1         '/tibero/tbdata/tibero/log11.log' SIZE 50M,
+GROUP 2         '/tibero/tbdata/tibero/log21.log' SIZE 50M
+NORESETLOGS
+DATAFILE
+        '/tibero/tbdata/tibero/system001.dtf',
+        '/tibero/tbdata/tibero/undo001.dtf',
+        '/tibero/tbdata/tibero/usr001.dtf',
+        '/tibero/tbdata/tibero/syssub001.dtf',
+        '/tibero/tbdata/tibero/USERS01.dtf'
+ARCHIVELOG
+MAXLOGFILES 100
+MAXFBLOGFILES 255
+MAXLOGMEMBERS 8
+MAXDATAFILES 256
+MAXARCHIVELOG 500
+MAXBACKUPSET 500
+MAXLOGHISTORY 500
+MAXFBMARKER 168
+MAXFBARCHIVELOG 500
+MAXSTANDBYARCHIVELOG 500
+CHARACTER SET MSWIN949
+NATIONAL CHARACTER SET UTF16
+;
+
+-- If the control file is successfully created,
+-- the database automatically mounts the control file and turns into MOUNT mode.
+
+
+---- Media Recovery is required in MOUNT mode.
+--ALTER DATABASE RECOVER AUTOMATIC;
+
+
+---- Reboot the database or open it directly as follows.
+--ALTER DATABASE OPEN ;
+
+
+---- Adding Tempfiles is required in OPEN(NORMAL) mode.
+-- ALTER TABLESPACE TEMP ADD TEMPFILE '/tibero/tbdata/tibero/temp001.dtf'
+--    SIZE 100M REUSE AUTOEXTEND ON NEXT 64M MAXSIZE 3G;
+
+
+---- Adding RMGR backup_sets is required in OPEN(NORMAL) mode.
+
+
+---- End of Set #1. NORESETLOGS case
+
+
+
+/* ================== Execute rather below only when needed ====================
+
+---- Set #2. RESETLOGS case
+CREATE CONTROLFILE REUSE DATABASE "tibero"
+LOGFILE
+-- Thread #0
+GROUP 0         '/tibero/tbdata/tibero/log01.log' SIZE 50M,
+GROUP 1         '/tibero/tbdata/tibero/log11.log' SIZE 50M,
+GROUP 2         '/tibero/tbdata/tibero/log21.log' SIZE 50M
+RESETLOGS
+DATAFILE
+        '/tibero/tbdata/tibero/system001.dtf',
+        '/tibero/tbdata/tibero/undo001.dtf',
+        '/tibero/tbdata/tibero/usr001.dtf',
+        '/tibero/tbdata/tibero/syssub001.dtf',
+        '/tibero/tbdata/tibero/USERS01.dtf'
+ARCHIVELOG
+MAXLOGFILES 100
+MAXFBLOGFILES 255
+MAXLOGMEMBERS 8
+MAXDATAFILES 256
+MAXARCHIVELOG 500
+MAXBACKUPSET 500
+MAXLOGHISTORY 500
+MAXFBMARKER 168
+MAXFBARCHIVELOG 500
+MAXSTANDBYARCHIVELOG 500
+CHARACTER SET MSWIN949
+NATIONAL CHARACTER SET UTF16
+;
+
+-- If the control file is successfully created,
+-- the database automatically mounts the control file and turns into MOUNT mode.
+
+
+---- Adding Logfiles is required in MOUNT mode.
+
+---- Media Recovery is required in MOUNT mode.
+--ALTER DATABASE RECOVER AUTOMATIC;
+
+
+---- Reboot the database with resetlogs option or open it directly as follows.
+--ALTER DATABASE OPEN RESETLOGS;
+
+
+---- Adding Tempfiles is required in OPEN(NORMAL) mode.
+-- ALTER TABLESPACE TEMP ADD TEMPFILE '/tibero/tbdata/tibero/temp001.dtf'
+--    SIZE 100M REUSE AUTOEXTEND ON NEXT 64M MAXSIZE 3G;
+
+
+---- Adding RMGR backup_sets is required in OPEN(NORMAL) mode.
+
+
+---- End of Set #2. RESETLOGS case
+
+============================================================================= */
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ cp /tibero/tbdata/tibero/crectl.sql     /tibero/tbdata/tibero/crectl_resetlogs.sql
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ vi /tibero/tbdata/tibero/crectl_resetlogs.sql
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ cat /tibero/tbdata/tibero/crectl_resetlogs.sql
+SET ECHO ON
+
+-- Below are two sets of SQL statements, each of which
+--  1) recreates a new control file
+--  2) opens the database
+--  3) adds temp files
+--  4) adds the RMGR backup_sets
+
+-- The 1st set opens the database with the NORESETLOGS option.
+-- It should be used only if the current online redo logfiles are all available
+-- and can be reused for the database.
+-- Additional archive logfiles may be required for the media recovery.
+
+-- The 2nd set opens the database with the RESETLOGS option.
+-- It should be used only if the current online redo logfiles are unavailable.
+-- The current online redo logfiles will be all invalidated and initialized.
+-- Please be aware of the resetlogs operation of the database.
+
+-- Each set can be edited and executed as needed.
+-- Please be cautious to choose only one and appropriate option,
+-- either NORESETLOGS or RESETLOGS, and edit it correctly before executing it.
+
+-- The set corresponding to the option specified in the backup SQL statement
+-- used to create this trace file is shown right below with priority.
+
+
+
+---- Set #2. RESETLOGS case
+CREATE CONTROLFILE REUSE DATABASE "tibero"
+LOGFILE
+-- Thread #0
+GROUP 0         '/tibero/tbdata/tibero/log01.log' SIZE 50M,
+GROUP 1         '/tibero/tbdata/tibero/log11.log' SIZE 50M,
+GROUP 2         '/tibero/tbdata/tibero/log21.log' SIZE 50M
+RESETLOGS
+DATAFILE
+        '/tibero/tbdata/tibero/system001.dtf',
+        '/tibero/tbdata/tibero/undo001.dtf',
+        '/tibero/tbdata/tibero/usr001.dtf',
+        '/tibero/tbdata/tibero/syssub001.dtf',
+        '/tibero/tbdata/tibero/USERS01.dtf'
+ARCHIVELOG
+MAXLOGFILES 100
+MAXFBLOGFILES 255
+MAXLOGMEMBERS 8
+MAXDATAFILES 256
+MAXARCHIVELOG 500
+MAXBACKUPSET 500
+MAXLOGHISTORY 500
+MAXFBMARKER 168
+MAXFBARCHIVELOG 500
+MAXSTANDBYARCHIVELOG 500
+CHARACTER SET MSWIN949
+NATIONAL CHARACTER SET UTF16
+;
+
+
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ tbsql sys/tibero @/tibero/tbdata/tibero/crectl_resetlogs.sql
+
+tbSQL 7
+
+TmaxTibero Corporation Copyright (c) 2020-. All rights reserved.
+
+Connected to Tibero.
+
+SQL>
+SQL> -- Below are two sets of SQL statements, each of which
+SQL> --  1) recreates a new control file
+SQL> --  2) opens the database
+SQL> --  3) adds temp files
+SQL> --  4) adds the RMGR backup_sets
+SQL>
+SQL> -- The 1st set opens the database with the NORESETLOGS option.
+SQL> -- It should be used only if the current online redo logfiles are all available
+SQL> -- and can be reused for the database.
+SQL> -- Additional archive logfiles may be required for the media recovery.
+SQL>
+SQL> -- The 2nd set opens the database with the RESETLOGS option.
+SQL> -- It should be used only if the current online redo logfiles are unavailable.
+SQL> -- The current online redo logfiles will be all invalidated and initialized.
+SQL> -- Please be aware of the resetlogs operation of the database.
+SQL>
+SQL> -- Each set can be edited and executed as needed.
+SQL> -- Please be cautious to choose only one and appropriate option,
+SQL> -- either NORESETLOGS or RESETLOGS, and edit it correctly before executing it.
+SQL>
+SQL> -- The set corresponding to the option specified in the backup SQL statement
+SQL> -- used to create this trace file is shown right below with priority.
+SQL>
+SQL>
+SQL>
+SQL> ---- Set #2. RESETLOGS case
+SQL> CREATE CONTROLFILE REUSE DATABASE "tibero"
+   2 LOGFILE
+   3 -- Thread #0
+   4 GROUP 0    '/tibero/tbdata/tibero/log01.log' SIZE 50M,
+   5 GROUP 1    '/tibero/tbdata/tibero/log11.log' SIZE 50M,
+   6 GROUP 2    '/tibero/tbdata/tibero/log21.log' SIZE 50M
+   7 RESETLOGS
+   8 DATAFILE
+   9    '/tibero/tbdata/tibero/system001.dtf',
+  10    '/tibero/tbdata/tibero/undo001.dtf',
+  11    '/tibero/tbdata/tibero/usr001.dtf',
+  12    '/tibero/tbdata/tibero/syssub001.dtf',
+  13    '/tibero/tbdata/tibero/USERS01.dtf'
+  14 ARCHIVELOG
+  15 MAXLOGFILES 100
+  16 MAXFBLOGFILES 255
+  17 MAXLOGMEMBERS 8
+  18 MAXDATAFILES 256
+  19 MAXARCHIVELOG 500
+  20 MAXBACKUPSET 500
+  21 MAXLOGHISTORY 500
+  22 MAXFBMARKER 168
+  23 MAXFBARCHIVELOG 500
+  24 MAXSTANDBYARCHIVELOG 500
+  25 CHARACTER SET MSWIN949
+  26 NATIONAL CHARACTER SET UTF16
+  27 ;
+
+Control File created.
+
+SQL>
+SQL> -- If the control file is successfully created,
+SQL> -- the database automatically mounts the control file and turns into MOUNT mode.
+SQL>
+SQL>
+SQL> ---- Adding Logfiles is required in MOUNT mode.
+SQL>
+SQL> ---- Media Recovery is required in MOUNT mode.
+SQL> --ALTER DATABASE RECOVER AUTOMATIC;
+SQL>
+SQL>
+SQL> ---- Reboot the database with resetlogs option or open it directly as follows.
+SQL> --ALTER DATABASE OPEN RESETLOGS;
+SQL>
+SQL>
+SQL> ---- Adding Tempfiles is required in OPEN(NORMAL) mode.
+SQL> -- ALTER TABLESPACE TEMP ADD TEMPFILE '/tibero/tbdata/tibero/temp001.dtf'
+SQL> --    SIZE 100M REUSE AUTOEXTEND ON NEXT 64M MAXSIZE 3G;
+SQL>
+SQL>
+SQL> ---- Adding RMGR backup_sets is required in OPEN(NORMAL) mode.
+SQL>
+SQL>
+SQL> ---- End of Set #2. RESETLOGS case
+SQL>
+SQL>
+SQL>
+SQL>
+SQL> quit
+Disconnected.
+[tibero@T1:/tibero]$ tbdown
+
+Tibero instance terminated (NORMAL mode).
+
+[tibero@T1:/tibero]$ tbboot mount
+Change core dump dir to /tibero/tibero7/bin/prof.
+Listener port = 8629
+
+Tibero 7
+
+TmaxTibero Corporation Copyright (c) 2020-. All rights reserved.
+Tibero instance started up (MOUNT mode).
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ ls -l /tibero/tbdata/tibero/*.ctl
+-rw------- 1 tibero dba 75612160 Aug 25 16:54 /tibero/tbdata/tibero/c1.ctl
+-rw------- 1 tibero dba 75612160 Aug 25 16:54 /tibero/tbdata/tibero/c2.ctl
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ tbsql sys/tibero
+
+tbSQL 7
+
+TmaxTibero Corporation Copyright (c) 2020-. All rights reserved.
+
+Connected to Tibero.
+
+SQL> ALTER DATABASE RECOVER AUTOMATIC DATABASE;
+TBR-1072: Current online log file (thread 0 seq -1) is outdated.
+Need a log with seq 11 to recover from TSN 78399.
+Recovery done until 2022/08/25 14:30:24 TSN 78206.
+Recovery is incomplete and resetlogs is required.
+
+SQL> QUIT
+Disconnected.
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ tbdown
+
+Tibero instance terminated (NORMAL mode).
+
+[tibero@T1:/tibero]$ tbboot resetlogs
+Change core dump dir to /tibero/tibero7/bin/prof.
+Listener port = 8629
+
+Tibero 7
+
+TmaxTibero Corporation Copyright (c) 2020-. All rights reserved.
+Tibero instance started up (NORMAL RESETLOGS mode).
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ ls -l
+total 775476
+-rwxr--r--  1 tibero dba        12 Aug 25 12:08 aaa
+-rwxr-x---  1 tibero dba      1127 Aug 18 16:45 dbcreate.sql
+drwxr-xr-x  2 tibero dba       235 Aug 24 14:05 expimp
+drwxr-xr-x  2 tibero dba       303 Aug 24 14:34 expimp2
+drwxr-xr-x  3 tibero dba       248 Aug 23 11:24 instantclient_11_2
+drwxr-xr-x  3 tibero dba      4096 Aug 23 13:47 instantclient_19_16
+-rwxr-x---  1 tibero dba  60704657 Aug 23 10:45 instantclient-basic-linux.x64-11.2.0.4.0.zip
+-rwxr-x---  1 tibero dba  74882203 Aug 23 13:45 instantclient-basic-linux.x64-19.16.0.0.0dbru.zip
+-rwxr-x---  1 tibero dba       471 Aug 18 16:39 license.xml
+drwxr-xr-x  2 tibero dba       133 Aug 24 15:45 loader
+-rwxr-x---  1 tibero dba       189 Aug 18 16:49 obj.sql
+-rwxr--r--  1 tibero dba       662 Aug 25 15:27 off_backup2.sh
+-rwxr--r--  1 tibero dba       797 Aug 25 15:38 recover_using_offbackup2.sh
+-rwxr--r--  1 tibero dba       788 Aug 25 11:38 recover_using_offbackup.sh
+lrwxrwxrwx  1 tibero dba        11 Jan 17  2019 s -> /media/sf_s
+drwxr-xr-x  3 tibero dba        20 Aug 25 16:25 tbdata
+drwxr-xr-x  3 tibero dba        35 Aug 23 11:10 tbgateway
+drwxr-xr-x 10 tibero dba       113 Aug 18 16:44 tibero7
+-rwxr-x---  1 tibero dba 658461618 Aug 18 16:38 tibero7-bin-FS02-linux64_3.10-202626-20220624131800.tar.gz
+drwxr-xr-x  2 tibero dba       119 Aug 24 13:30 tmp
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ ls -l /tibero/tbdata/tibero/
+total 1012456
+drwxr-xr-x 2 tibero dba       179 Aug 25 17:01 arch
+-rw------- 1 tibero dba  75612160 Aug 25 17:02 c1.ctl
+-rw------- 1 tibero dba  75612160 Aug 25 17:02 c2.ctl
+-rwxr-x--- 1 tibero dba      2525 Aug 25 16:54 crectl_resetlogs.sql
+-rwxr-x--- 1 tibero dba      3898 Aug 25 16:42 crectl.sql
+drwx------ 3 tibero dba        17 Aug 23 09:43 java
+-rw------- 1 tibero dba  52428800 Aug 25 17:00 log01.log
+-rw------- 1 tibero dba  52428800 Aug 25 17:01 log11.log
+-rw------- 1 tibero dba  52428800 Aug 25 17:00 log21.log
+-rwxr-x--- 1 tibero dba  52428800 Aug 25 17:01 syssub001.dtf
+-rwxr-x--- 1 tibero dba 171966464 Aug 25 17:01 system001.dtf
+-rwxr-x--- 1 tibero dba 104857600 Aug 25 16:42 temp001.dtf
+-rwxr-x--- 1 tibero dba 209715200 Aug 25 17:01 undo001.dtf
+-rwxr-x--- 1 tibero dba 136839168 Aug 25 17:00 USERS01.dtf
+-rwxr-x--- 1 tibero dba  52428800 Aug 25 17:00 usr001.dtf
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ tbsql sys/tibero
+
+tbSQL 7
+
+TmaxTibero Corporation Copyright (c) 2020-. All rights reserved.
+
+Connected to Tibero.
+
+SQL> COL TABLESPACE_NAME FOR A20
+SQL> SELECT FILE_ID, TABLESPACE_NAME FROM DBA_TEMP_FILES;
+
+0 row selected.
+
+SQL>
+SQL>
+SQL> SELECT NAME FROM V$TABLESPACE;
+
+NAME
+--------------------------------------------------------------------------------
+SYSTEM
+UNDO
+TEMP
+USR
+SYSSUB
+USERS
+
+6 rows selected.
+
+SQL> ALTER TABLESPACE TEMP ADD TEMPFILE '/tibero/tbdata/tibero/temp001.dtf'   SIZE 100M REUSE AUTOEXTEND ON NEXT 64M MAXSIZE 3G;
+
+Tablespace 'TEMP' altered.
+
+SQL>
+SQL> SELECT NAME FROM V$TABLESPACE;
+
+NAME
+--------------------------------------------------------------------------------
+SYSTEM
+UNDO
+TEMP
+USR
+SYSSUB
+USERS
+
+6 rows selected.
+
+SQL>
+SQL> SELECT FILE_ID, TABLESPACE_NAME FROM DBA_TEMP_FILES;
+
+   FILE_ID TABLESPACE_NAME
+---------- --------------------
+         0 TEMP
+
+1 row selected.
+
+SQL>
+SQL> QUIT
+Disconnected.
+
+[tibero@T1:/tibero]$ cat ./off_backup2.sh
+#!/bin/sh
+
+echo "TIBERO OFFLINE BACKUP : /tibero/s/off_backup2 "
+
+### RM FILES
+rm     /tibero/s/off_backup2/*
+rm     /tibero/s/off_backup2/.passwd
+
+
+### TIBERO INSTANCE SHUTDOWN
+tbdown immediate
+
+### COPY DATABASE
+cp /tibero/tbdata/tibero/*.dtf     /tibero/s/off_backup2
+cp /tibero/tbdata/tibero/*.log     /tibero/s/off_backup2
+cp /tibero/tbdata/tibero/*.ctl     /tibero/s/off_backup2
+cp /tibero/tbdata/tibero/arch/*.arc   /tibero/s/off_backup2
+cp /tibero/tibero7/config/tibero.tip  /tibero/s/off_backup2
+cp /tibero/tbdata/tibero/.passwd      /tibero/s/off_backup2
+
+### TIBERO INSTANCE START
+tbboot
+
+ls -al /tibero/s/off_backup2
+
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$ ./off_backup2.sh
+TIBERO OFFLINE BACKUP : /tibero/s/off_backup2
+
+Tibero instance terminated (IMMEDIATE mode).
+
+Change core dump dir to /tibero/tibero7/bin/prof.
+Listener port = 8629
+
+Tibero 7
+
+TmaxTibero Corporation Copyright (c) 2020-. All rights reserved.
+Tibero instance started up (NORMAL mode).
+total 1040978
+drwxrwx--- 1 root vboxsf      4096 Aug 25 17:13 .
+drwxrwx--- 1 root vboxsf      4096 Aug 25 14:13 ..
+-rwxrwx--- 1 root vboxsf  75612160 Aug 25 17:13 c1.ctl
+-rwxrwx--- 1 root vboxsf  75612160 Aug 25 17:13 c2.ctl
+-rwxrwx--- 1 root vboxsf  52428800 Aug 25 17:13 log01.log
+-rwxrwx--- 1 root vboxsf  52428800 Aug 25 17:13 log11.log
+-rwxrwx--- 1 root vboxsf  52428800 Aug 25 17:13 log21.log
+-rwxrwx--- 1 root vboxsf    165888 Aug 25 17:13 log-t0-r0-s10.arc
+-rwxrwx--- 1 root vboxsf  27481088 Aug 25 17:13 log-t0-r0-s5.arc
+-rwxrwx--- 1 root vboxsf    430592 Aug 25 17:13 log-t0-r0-s6.arc
+-rwxrwx--- 1 root vboxsf     10240 Aug 25 17:13 log-t0-r0-s7.arc
+-rwxrwx--- 1 root vboxsf     53760 Aug 25 17:13 log-t0-r0-s8.arc
+-rwxrwx--- 1 root vboxsf   1046528 Aug 25 17:13 log-t0-r0-s9.arc
+-rwxrwx--- 1 root vboxsf       512 Aug 25 17:13 log-t0-r78399-s1.arc
+-rwxrwx--- 1 root vboxsf        44 Aug 25 17:13 .passwd
+-rwxrwx--- 1 root vboxsf  52428800 Aug 25 17:13 syssub001.dtf
+-rwxrwx--- 1 root vboxsf 171966464 Aug 25 17:13 system001.dtf
+-rwxrwx--- 1 root vboxsf 104857600 Aug 25 17:13 temp001.dtf
+-rwxrwx--- 1 root vboxsf       253 Aug 25 17:13 tibero.tip
+-rwxrwx--- 1 root vboxsf 209715200 Aug 25 17:13 undo001.dtf
+-rwxrwx--- 1 root vboxsf 136839168 Aug 25 17:13 USERS01.dtf
+-rwxrwx--- 1 root vboxsf  52428800 Aug 25 17:13 usr001.dtf
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+[tibero@T1:/tibero]$
+
+	   
