@@ -61,6 +61,7 @@ drop public database link public_tibero;
 
 ![Desktop View](/assets/img/2022.08/22-2.PNG){: width="70%" }
 
+<<<<<<< Updated upstream:_posts/2022-08-22-TiberoAcademyday3.md
 다음그림은 실습진행의 architecture이다. Tibero to Tibero이니 왼쪽의 PC에 있는 Virtualbox안에 T1 서버도 Tibero환경, 오른쪽의 강사가 셋팅한 서버또한 Tibero환경이다. 따라서 두 환경사이에서는 GateWay없이 쿼리와 결과를 전달받을 수 있다.
 <br>
 
@@ -86,6 +87,9 @@ SQL> create database link <DB Link명> connect tso <접속 사용자 ID>
 identified by <접속 패스워드> 2 using <접속에 사용할 alias>
 ```
 <br>
+=======
+다음그림은 실습진행의 architecture이다. Tibero to Tibero이니 왼쪽의 PC에 있는 Virtualbox안에 T1 서버도 Tibero환경, 오른쪽의 강사님이 셋팅한 서버또한 Tibero환경이다. 따라서 두 환경사이에서는 GateWay없이 쿼리와 결과를 전달받을 수 있다.
+>>>>>>> Stashed changes:_posts/2022-08-22-TiberoAcademy.md
 
 적용한 것은 다음과 같다.
 ```
