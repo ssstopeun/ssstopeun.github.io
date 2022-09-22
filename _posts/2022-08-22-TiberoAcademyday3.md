@@ -1,7 +1,7 @@
 ---
 title: Tibero Lecture3. Tibero Database Link
 date: 2022-08-22 14:27:48 +0900
-categories: [Tibero DBMS, Education]
+categories: [Special Lecture, Tibero DBMS]
 tags: [Tibero, Backend, SW, DBMS] 
 author: author_id 
 ---

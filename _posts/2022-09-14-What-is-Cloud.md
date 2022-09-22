@@ -1,7 +1,7 @@
 ---
 title: Stop's Q2. Cloud
 date: 2022-07-28 15:00:00 +0900
-categories: [Stop's Study, Question]
+categories: [Special Lecture, CLOIT]
 tags: [Java, Spring] 
 author: author_id 
 ---

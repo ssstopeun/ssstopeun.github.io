@@ -1,7 +1,7 @@
 ---
 title: Tibero Lecture2. Tibero Install & Setting
 date: 2022-08-17 15:00:00 +0900
-categories: [Tibero DBMS, Education]
+categories: [Special Lecture, Tibero DBMS]
 tags: [Tibero, Backend, SW, DBMS] 
 author: author_id 
 ---

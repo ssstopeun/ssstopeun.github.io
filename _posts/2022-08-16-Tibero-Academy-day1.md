@@ -1,7 +1,7 @@
 ---
 title: Tibero Lecture1. Tibero Architecture
 date: 2022-08-16 15:00:00 +0900
-categories: [Tibero DBMS, Education]
+categories: [Special Lecture, Tibero DBMS]
 tags: [Tibero, Backend, SW, DBMS] 
 author: author_id 
 ---

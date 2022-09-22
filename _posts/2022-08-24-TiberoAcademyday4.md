@@ -1,7 +1,7 @@
 ---
 title: Tibero Lecture4. Tibero Tools
 date: 2022-08-24 15:57:13 +0900
-categories: [Tibero DBMS, Education]
+categories: [Special Lecture, Tibero DBMS]
 tags: [Tibero, Backend, SW, DBMS] 
 author: author_id 
 ---
